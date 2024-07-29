@@ -2,13 +2,15 @@ let services = [];
 let currentPage = 1;
 const itemsPerPage = 10;
 
+// Fetch services data from the JSON file
 fetch('services.json')
     .then(response => response.json())
     .then(data => {
         services = data;
         paginateServices();
         setupPagination(services);
-    });
+    })
+    .catch(error => console.error('Error fetching services:', error));
 
 function displayServices(servicesToDisplay) {
     const serviceList = document.getElementById('service-list');
@@ -64,4 +66,6 @@ acceptCookiesButton.addEventListener('click', () => {
 
 if (!localStorage.getItem('cookiesAccepted')) {
     cookiePopup.style.display = 'flex';
+} else {
+    cookiePopup.style.display = 'none';
 }
