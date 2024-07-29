@@ -1,12 +1,14 @@
-const services = [
-    // Sample data
-    { name: "Service 1", description: "Description of Service 1", link: "https://example.com/1" },
-    { name: "Service 2", description: "Description of Service 2", link: "https://example.com/2" },
-    // Add more services here
-];
-
+let services = [];
 let currentPage = 1;
 const itemsPerPage = 10;
+
+fetch('services.json')
+    .then(response => response.json())
+    .then(data => {
+        services = data;
+        paginateServices();
+        setupPagination(services);
+    });
 
 function displayServices(servicesToDisplay) {
     const serviceList = document.getElementById('service-list');
@@ -51,5 +53,15 @@ document.getElementById('search-bar').addEventListener('input', (event) => {
     searchServices(event.target.value);
 });
 
-paginateServices();
-setupPagination(services);
+// Cookie Popup
+const cookiePopup = document.getElementById('cookie-popup');
+const acceptCookiesButton = document.getElementById('accept-cookies');
+
+acceptCookiesButton.addEventListener('click', () => {
+    cookiePopup.style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true');
+});
+
+if (!localStorage.getItem('cookiesAccepted')) {
+    cookiePopup.style.display = 'flex';
+}

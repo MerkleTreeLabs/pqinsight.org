@@ -1,0 +1,13 @@
+[
+    {
+        "name": "Service 1",
+        "description": "Description of Service 1",
+        "link": "https://example.com/1"
+    },
+    {
+        "name": "Service 2",
+        "description": "Description of Service 2",
+        "link": "https://example.com/2"
+    }
+    // Add more services here
+]
