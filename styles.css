@@ -2,9 +2,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
@@ -29,39 +26,7 @@ header p {
     color: #6c757d;
 }
 
-#container {
-    display: flex;
-    flex: 1;
-}
-
-#sidebar {
-    width: 250px;
-    background-color: #343a40;
-    color: white;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-#sidebar nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-#sidebar nav ul li {
-    margin-bottom: 10px;
-}
-
-#sidebar nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-#sidebar nav ul li a:hover {
-    text-decoration: underline;
-}
-
 main {
-    flex: 1;
     padding: 20px;
     max-width: 800px;
     margin: 0 auto;
@@ -74,22 +39,12 @@ main {
     margin-bottom: 20px;
 }
 
-.service-section {
-    margin-bottom: 40px;
-}
-
-.service-section h3 {
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-.service-section ul {
+ul#service-list {
     list-style: none;
     padding: 0;
 }
 
-.service-section ul li {
+ul#service-list li {
     background: #fff;
     margin-bottom: 10px;
     padding: 15px;
@@ -97,9 +52,14 @@ main {
     border-radius: 5px;
 }
 
-.service-section ul li a {
+ul#service-list li a {
     text-decoration: none;
     color: #007bff;
+}
+
+#pagination-controls {
+    text-align: center;
+    margin-top: 20px;
 }
 
 footer {
