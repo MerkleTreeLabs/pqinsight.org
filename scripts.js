@@ -1,4 +1,4 @@
-let services = [];
+let sections = [];
 let currentPage = 1;
 const itemsPerPage = 10;
 
@@ -6,49 +6,57 @@ const itemsPerPage = 10;
 fetch('services.json')
     .then(response => response.json())
     .then(data => {
-        services = data;
+        sections = data.sections;
+        populateTOC();
         paginateServices();
-        setupPagination(services);
     })
     .catch(error => console.error('Error fetching services:', error));
 
-function displayServices(servicesToDisplay) {
-    const serviceList = document.getElementById('service-list');
-    serviceList.innerHTML = '';
-
-    servicesToDisplay.forEach(service => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${service.name}</strong><p>${service.description}</p><a href="${service.link}" target="_blank">Visit</a>`;
-        serviceList.appendChild(listItem);
+function populateTOC() {
+    const toc = document.getElementById('toc');
+    sections.forEach((section, index) => {
+        const tocItem = document.createElement('li');
+        tocItem.innerHTML = `<a href="#section-${index}">${section.name}</a>`;
+        toc.appendChild(tocItem);
     });
 }
 
-function setupPagination(services) {
-    const paginationControls = document.getElementById('pagination-controls');
-    paginationControls.innerHTML = '';
+function displayServices(servicesToDisplay) {
+    const serviceSections = document.getElementById('service-sections');
+    serviceSections.innerHTML = '';
 
-    const totalPages = Math.ceil(services.length / itemsPerPage);
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        pageButton.addEventListener('click', () => {
-            currentPage = i;
-            paginateServices();
+    servicesToDisplay.forEach((section, index) => {
+        const sectionElement = document.createElement('div');
+        sectionElement.className = 'service-section';
+        sectionElement.id = `section-${index}`;
+        sectionElement.innerHTML = `<h3>${section.name}</h3>`;
+
+        const sectionList = document.createElement('ul');
+        section.items.forEach(service => {
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `<strong>${service.name}</strong><p>${service.description}</p><a href="${service.link}" target="_blank">Visit</a>`;
+            sectionList.appendChild(listItem);
         });
-        paginationControls.appendChild(pageButton);
-    }
+        sectionElement.appendChild(sectionList);
+        serviceSections.appendChild(sectionElement);
+    });
 }
 
 function paginateServices() {
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    displayServices(services.slice(start, end));
+    displayServices(sections.slice(start, end));
 }
 
 function searchServices(query) {
-    const filteredServices = services.filter(service => service.name.toLowerCase().includes(query.toLowerCase()));
-    displayServices(filteredServices.slice(0, itemsPerPage));
-    setupPagination(filteredServices);
+    const filteredSections = sections.map(section => {
+        return {
+            name: section.name,
+            items: section.items.filter(service => service.name.toLowerCase().includes(query.toLowerCase()))
+        };
+    }).filter(section => section.items.length > 0);
+
+    displayServices(filteredSections);
 }
 
 document.getElementById('search-bar').addEventListener('input', (event) => {
