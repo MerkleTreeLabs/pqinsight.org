@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PQInsight.com - Post Quantum Insight</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
 </head>
 <body>
     <header>
@@ -13,14 +21,28 @@
         <p>PQInsight.com is a curated list of services and software that have migrated to post-quantum secure cryptography.</p>
         <p>Our goal is to provide a comprehensive resource for businesses and individuals looking to adopt post-quantum security measures. Explore our list of links and descriptions to find the best post-quantum secure solutions available today.</p>
     </header>
-    <main>
-        <input type="text" id="search-bar" placeholder="Search services...">
-        <ul id="service-list"></ul>
-        <div id="pagination-controls"></div>
-    </main>
+    <div id="container">
+        <aside id="sidebar">
+            <nav>
+                <ul id="toc"></ul>
+            </nav>
+        </aside>
+        <main id="content">
+            <input type="text" id="search-bar" placeholder="Search services...">
+            <div id="service-sections"></div>
+            <div id="pagination-controls"></div>
+        </main>
+    </div>
     <footer>
         <p>Contact Information | Privacy Policy | Terms of Service</p>
     </footer>
+
+    <!-- Cookie Popup -->
+    <div id="cookie-popup" class="cookie-popup">
+        <p>We use cookies to improve your experience. By using our site, you agree to our <a href="#">cookie policy</a>.</p>
+        <button id="accept-cookies">Accept</button>
+    </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>

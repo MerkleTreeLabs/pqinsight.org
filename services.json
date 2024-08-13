@@ -1,0 +1,35 @@
+{
+    "sections": [
+        {
+            "name": "Secure Communication Protocols",
+            "items": [
+                {
+                    "name": "SSH",
+                    "description": "Secure Shell (SSH) is a cryptographic network protocol for operating network services securely over an unsecured network.",
+                    "link": "https://example.com/ssh"
+                },
+                {
+                    "name": "TLS",
+                    "description": "Transport Layer Security (TLS) is a cryptographic protocol designed to provide communications security over a computer network.",
+                    "link": "https://example.com/tls"
+                }
+            ]
+        },
+        {
+            "name": "Public Messaging",
+            "items": [
+                {
+                    "name": "SMS",
+                    "description": "Short Message Service (SMS) is a text messaging service component of most telephone, internet, and mobile device systems.",
+                    "link": "https://example.com/sms"
+                },
+                {
+                    "name": "Email",
+                    "description": "Electronic mail (Email) is a method of exchanging messages between people using electronic devices.",
+                    "link": "https://example.com/email"
+                }
+            ]
+        }
+        // Add more sections and items here
+    ]
+}
