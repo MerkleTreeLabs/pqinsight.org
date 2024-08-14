@@ -1,71 +1,120 @@
-let services = [];
+// Example JSON data
+const data = [
+    {
+        "title": "Google Chrome",
+        "description": "Protecting Chrome Traffic with Hybrid Kyber KEM",
+        "url": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html"
+    },
+    {
+        "title": "Example Link 2",
+        "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
+        "url": "https://www.openssh.com/txt/release-9.0"
+    }
+    // Add more data as needed
+];
+
 let currentPage = 1;
-const itemsPerPage = 10;
+const rowsPerPage = 5;
 
-// Fetch services data from the JSON file
-fetch('services.json')
-    .then(response => response.json())
-    .then(data => {
-        services = data;
-        paginateServices();
-        setupPagination(services);
-    })
-    .catch(error => console.error('Error fetching services:', error));
+function displayTable(data) {
+    const table = document.getElementById('links-table');
+    table.innerHTML = '';
 
-function displayServices(servicesToDisplay) {
-    const serviceList = document.getElementById('service-list');
-    serviceList.innerHTML = '';
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedData = data.slice(start, end);
 
-    servicesToDisplay.forEach(service => {
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `<strong>${service.name}</strong><p>${service.description}</p><a href="${service.link}" target="_blank">Visit</a>`;
-        serviceList.appendChild(listItem);
+    paginatedData.forEach(item => {
+        const row = `
+            <tr>
+                <td>${item.title}</td>
+                <td>${item.description}</td>
+                <td><a href="${item.url}" target="_blank">${item.url}</a></td>
+            </tr>
+        `;
+        table.innerHTML += row;
     });
 }
 
-function setupPagination(services) {
-    const paginationControls = document.getElementById('pagination-controls');
-    paginationControls.innerHTML = '';
+function setupPagination(data) {
+    const pagination = document.getElementById('pagination');
+    pagination.innerHTML = '';
 
-    const totalPages = Math.ceil(services.length / itemsPerPage);
-    for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.textContent = i;
-        pageButton.addEventListener('click', () => {
-            currentPage = i;
-            paginateServices();
-        });
-        paginationControls.appendChild(pageButton);
+    const pageCount = Math.ceil(data.length / rowsPerPage);
+    for (let i = 1; i <= pageCount; i++) {
+        const li = document.createElement('li');
+        li.className = 'page-item';
+        li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+        pagination.appendChild(li);
     }
 }
 
-function paginateServices() {
-    const start = (currentPage - 1) * itemsPerPage;
-    const end = start + itemsPerPage;
-    displayServices(services.slice(start, end));
+function changePage(page) {
+    currentPage = page;
+    displayTable(data);
 }
 
-function searchServices(query) {
-    const filteredServices = services.filter(service => service.name.toLowerCase().includes(query.toLowerCase()));
-    displayServices(filteredServices.slice(0, itemsPerPage));
-    setupPagination(filteredServices);
+function sortTable(n) {
+    const table = document.getElementById('links-table');
+    let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    switching = true;
+    dir = "asc"; 
+
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+        for (i = 0; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            switchcount++;
+        } else {
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
 }
 
-document.getElementById('search-bar').addEventListener('input', (event) => {
-    searchServices(event.target.value);
-});
+function searchTable() {
+    const input = document.getElementById("search").value.toLowerCase();
+    const filteredData = data.filter(item => 
+        item.title.toLowerCase().includes(input) ||
+        item.description.toLowerCase().includes(input) ||
+        item.url.toLowerCase().includes(input)
+    );
+    displayTable(filteredData);
+    setupPagination(filteredData);
+}
 
-// Cookie Popup
-const cookiePopup = document.getElementById('cookie-popup');
-const acceptCookiesButton = document.getElementById('accept-cookies');
+document.getElementById("search").addEventListener("input", searchTable);
 
-acceptCookiesButton.addEventListener('click', () => {
-    cookiePopup.style.display = 'none';
+function acceptCookies() {
+    document.querySelector('.cookie-consent').style.display = 'none';
     localStorage.setItem('cookiesAccepted', 'true');
-});
-
-if (!localStorage.getItem('cookiesAccepted')) {
-    cookiePopup.style.display = 'flex';
-} else {
-    cookiePopup.style.display = 'none';
 }
+
+window.onload = function() {
+    displayTable(data);
+    setupPagination(data);
+
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.querySelector('.cookie-consent').classList.add('show');
+    }
+};
