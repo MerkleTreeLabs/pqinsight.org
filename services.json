@@ -5,9 +5,8 @@
         "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html"
     },
     {
-        "name": "Service 2",
+        "name": "OpenSSH",
         "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
         "link": "https://www.openssh.com/txt/release-9.0"
     }
-    // Add more services here
 ]
