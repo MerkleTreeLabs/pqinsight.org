@@ -4,29 +4,76 @@
             {
                 "name": "Google Chrome",
                 "description": "Protecting Chrome Traffic with Hybrid Kyber KEM",
-                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html"
+                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
+                "date":""
             }
         ],
         "Web Services": [
             {
                 "name": "OpenSSH",
                 "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
-                "link": "https://www.openssh.com/txt/release-9.0"
+                "link": "https://www.openssh.com/txt/release-9.0",
+                "date":""
             }
         ],
         "Messaging": [
             {
                 "name": "Apple iMessage",
                 "description": "iMessage with PQ3: The new state of the art in quantum-secure messaging at scale",
-                "link": "https://security.apple.com/blog/imessage-pq3/"
+                "link": "https://security.apple.com/blog/imessage-pq3/",
+                "date":""
+            },
+            {
+                "name": "Signal",
+                "description": "Quantum Resistance and the Signal Protocol",
+                "link": "https://signal.org/blog/pqxdh/",
+                "date":"2023/09/19"
             }
         ],
-        "Security Audit and Remediation": [
+        "Post Quantum Resources": [
             {
                 "name": "IBM Quantum-safe software solutions",
                 "description":"IBM Quantum Safe™ technology is a comprehensive set of tools, capabilities, and approaches for securing your enterprise for the quantum future.",
-                "link":"https://www.ibm.com/quantum/quantum-safe"
-            }
+                "link":"https://www.ibm.com/quantum/quantum-safe",
+                "date":""
+            },
+            {
+                "name": "Open Quantum Safe ",
+                "description":"software for the transition to quantum-resistant cryptography.",
+                "link":"https://openquantumsafe.org/",
+                "date":""
+            },
+            {
+                "name": "Post-Quantum Cryptography Alliance",
+                "description":"Drive the advancement and adoption of post-quantum cryptography.",
+                "link":"https://pqca.org/",
+                "date":""
+            },
+            {
+                "name": "Post-Quantum",
+                "description":"Helping organisations become quantum-safe across their entire digital footprint.",
+                "link":"https://post-quantum.com/",
+                "date":""
+            },
+            {
+                "name": "NSA",
+                "description":"Post-Quantum Cybersecurity Resources",
+                "link":"https://www.nsa.gov/Cybersecurity/Post-Quantum-Cybersecurity-Resources/",
+                "date":""
+            },
+            {
+                "name": "Entrust",
+                "description":"Post-Quantum Cryptography",
+                "link":"https://www.entrust.com/solutions/post-quantum-cryptography/",
+                "date":""
+            },
+            {
+                "name": "AWS Post-Quantum Cryptography",
+                "description":"Bringing quantum-resistance to AWS services and customers",
+                "link":"https://aws.amazon.com/security/post-quantum-cryptography/",
+                "date":""
+            },
+            
         ]
     }
 }
