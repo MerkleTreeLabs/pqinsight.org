@@ -16,9 +16,16 @@
         ],
         "Messaging": [
             {
-                "name": "WhatsApp",
-                "description": "WhatsApp rolls out new privacy features",
-                "link": "https://blog.whatsapp.com/privacy-features"
+                "name": "Apple iMessage",
+                "description": "iMessage with PQ3: The new state of the art in quantum-secure messaging at scale",
+                "link": "https://security.apple.com/blog/imessage-pq3/"
+            }
+        ],
+        "Security Audit and Remediation": [
+            {
+                "name": "IBM Quantum-safe software solutions",
+                "description":"IBM Quantum Safe™ technology is a comprehensive set of tools, capabilities, and approaches for securing your enterprise for the quantum future.",
+                "link":"https://www.ibm.com/quantum/quantum-safe"
             }
         ]
     }
