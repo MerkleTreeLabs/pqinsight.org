@@ -70,7 +70,7 @@ function toggleCategory(category) {
         expandedCategories.delete(category);
     } else {
         // Expand the selected category
-        items.forEach(item => item.style.display = 'table-row');
+        items.forEach(item => item.style.display = 'table-row');  // <--- Ensure display style is set correctly
         expandedCategories.add(category);
     }
 }
@@ -87,7 +87,7 @@ function addGlobalToggleHandlers() {
 
 function expandAllCategories() {
     const items = document.querySelectorAll('.category-item');
-    items.forEach(item => item.style.display = 'table-row');
+    items.forEach(item => item.style.display = 'table-row');  // <--- Ensure all rows are shown
     expandedCategories = new Set(Object.keys(data));  // Mark all categories as expanded
 }
 
