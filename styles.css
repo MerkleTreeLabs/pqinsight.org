@@ -18,3 +18,29 @@ body {
 .cookie-consent.show {
     display: block;
 }
+
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer ul {
+    padding: 0;
+    margin: 10px 0 0;
+    list-style: none;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
