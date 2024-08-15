@@ -12,6 +12,10 @@ function fetchData() {
         .catch(error => console.error('Error fetching JSON:', error));
 }
 
+function normalizeCategory(category) {
+    return category.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens and convert to lowercase
+}
+
 function populateCategories() {
     const categories = Object.keys(data);
     const table = document.getElementById('links-table');
@@ -24,7 +28,8 @@ function populateCategories() {
         </tr>`;  // Add buttons to expand/collapse all
 
     categories.forEach(category => {
-        const headerRow = `<tr class="table-secondary category-header" data-category="${category}"><th colspan="4">${category}</th></tr>`;
+        const normalizedCategory = normalizeCategory(category);
+        const headerRow = `<tr class="table-secondary category-header" data-category="${normalizedCategory}"><th colspan="4">${category}</th></tr>`;
         table.innerHTML += headerRow;
 
         data[category].forEach(item => {
@@ -36,7 +41,7 @@ function populateCategories() {
             }
 
             const row = `
-                <tr class="category-item ${category}">
+                <tr class="category-item ${normalizedCategory}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
@@ -88,7 +93,7 @@ function addGlobalToggleHandlers() {
 function expandAllCategories() {
     const items = document.querySelectorAll('.category-item');
     items.forEach(item => item.style.display = 'table-row');
-    expandedCategories = new Set(Object.keys(data));  // Mark all categories as expanded
+    expandedCategories = new Set(Object.keys(data).map(normalizeCategory));  // Mark all categories as expanded
 }
 
 function collapseAllCategories() {
@@ -138,7 +143,8 @@ function searchTable() {
     });
 
     filteredData.forEach(group => {
-        const headerRow = `<tr class="table-secondary category-header" data-category="${group.category}"><th colspan="4">${group.category}</th></tr>`;
+        const normalizedCategory = normalizeCategory(group.category);
+        const headerRow = `<tr class="table-secondary category-header" data-category="${normalizedCategory}"><th colspan="4">${group.category}</th></tr>`;
         table.innerHTML += headerRow;
 
         group.items.forEach(item => {
@@ -150,7 +156,7 @@ function searchTable() {
             }
 
             const row = `
-                <tr class="category-item ${group.category}">
+                <tr class="category-item ${normalizedCategory}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
