@@ -72,7 +72,14 @@
                 "description":"Bringing quantum-resistance to AWS services and customers",
                 "link":"https://aws.amazon.com/security/post-quantum-cryptography/",
                 "date":"01/01/1970"
+            },
+            {
+                "name": "Post-Quantum Cryptography Coalition (PQCC)",
+                "description":"Accelerating Adoption of Quantum-Secure Cryptography in the Real World",
+                "link":"https://pqcc.org/",
+                "date":"01/01/1970"
             }
+
         ]
     }
 }
