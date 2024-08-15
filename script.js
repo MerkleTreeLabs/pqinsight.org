@@ -7,11 +7,13 @@ function fetchData() {
         .then(response => response.json())
         .then(json => {
             data = json.categories;
+            sortCategories('name', true); // Automatically sort by name (ascending)
             populateCategories();
             expandAllCategories();  // Automatically expand all categories on load
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
+
 
 function normalizeCategory(category) {
     return category.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens and convert to lowercase
