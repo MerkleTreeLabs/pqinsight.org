@@ -36,6 +36,7 @@ function populateCategories() {
     });
 }
 
+/*
 function displayTable(data) {
     const table = document.getElementById('links-table');
     table.innerHTML = '';
@@ -45,6 +46,23 @@ function displayTable(data) {
     const paginatedData = data.slice(start, end);
 
     paginatedData.forEach(item => {
+        const row = `
+            <tr>
+                <td>${item.name}</td>
+                <td>${item.description}</td>
+                <td><a href="${item.link}" target="_blank">${item.link}</a></td>
+            </tr>
+        `;
+        table.innerHTML += row;
+    });
+}
+*/
+function displayTable(data) {
+    const table = document.getElementById('links-table');
+    table.innerHTML = '';
+
+    // Display all data without pagination
+    data.forEach(item => {
         const row = `
             <tr>
                 <td>${item.name}</td>
@@ -120,7 +138,7 @@ function searchTable() {
         item.link.toLowerCase().includes(input)
     );
     displayTable(filteredData);
-    //setupPagination(filteredData);
+    setupPagination(filteredData);
 }
 
 document.getElementById("search").addEventListener("input", searchTable);
