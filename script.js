@@ -138,7 +138,7 @@ function searchTable() {
         item.link.toLowerCase().includes(input)
     );
     displayTable(filteredData);
-    setupPagination(filteredData);
+   // setupPagination(filteredData);
 }
 
 document.getElementById("search").addEventListener("input", searchTable);
