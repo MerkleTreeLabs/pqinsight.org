@@ -154,6 +154,19 @@ function searchTable() {
     }
 }
 
+function fetchData() {
+    fetch('services.json')
+        .then(response => {
+            console.log('Fetching JSON data...');
+            return response.json();
+        })
+        .then(json => {
+            console.log('JSON fetched successfully:', json);
+            data = json.categories;
+            populateCategories();
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
+}
 
 
 
