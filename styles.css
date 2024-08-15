@@ -44,3 +44,7 @@ footer ul li {
     display: inline;
     margin: 0 10px;
 }
+
+.viewed {
+    background-color: #e9ecef; /* Light gray to indicate viewed items */
+}

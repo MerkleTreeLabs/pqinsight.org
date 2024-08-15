@@ -60,8 +60,29 @@ function toggleCategory(category) {
         }
 
         // Expand the selected category
-        items.forEach(item => item.style.display = 'table-row');
+        items.forEach(item => {
+            item.style.display = 'table-row';
+            markAsViewed(item); // Mark item as viewed
+        });
         expandedCategory = category;
+    }
+}
+
+
+function markAsViewed(item) {
+    const link = item.querySelector('a').href;
+    let viewedLinks = getCookie('viewedLinks');
+
+    if (!viewedLinks) {
+        viewedLinks = [];
+    } else {
+        viewedLinks = JSON.parse(viewedLinks);
+    }
+
+    if (!viewedLinks.includes(link)) {
+        viewedLinks.push(link);
+        setCookie('viewedLinks', JSON.stringify(viewedLinks), 365);
+        item.classList.add('viewed');
     }
 }
 
@@ -116,6 +137,20 @@ function searchTable() {
     }
 }
 
+
+function setCookie(name, value, days) {
+    const expires = new Date(Date.now() + days * 864e5).toUTCString();
+    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+}
+
+function getCookie(name) {
+    return document.cookie.split('; ').reduce((r, v) => {
+        const parts = v.split('=');
+        return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+    }, '');
+}
+
+
 document.getElementById("search").addEventListener("input", searchTable);
 
 function acceptCookies() {
@@ -123,10 +158,22 @@ function acceptCookies() {
     localStorage.setItem('cookiesAccepted', 'true');
 }
 
+function highlightViewedLinks() {
+    const viewedLinks = JSON.parse(getCookie('viewedLinks') || '[]');
+
+    document.querySelectorAll('.category-item a').forEach(link => {
+        if (viewedLinks.includes(link.href)) {
+            link.closest('tr').classList.add('viewed');
+        }
+    });
+}
+
 window.onload = function() {
     fetchData();
 
     if (!localStorage.getItem('cookiesAccepted')) {
         document.querySelector('.cookie-consent').classList.add('show');
+    } else {
+        highlightViewedLinks(); // Highlight already viewed links
     }
 };
