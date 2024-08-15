@@ -47,8 +47,8 @@ function populateCategories() {
         });
     });
 
-    addCategoryClickHandlers();
-    addGlobalToggleHandlers();
+    addCategoryClickHandlers();  // Ensure all categories have click handlers
+    addGlobalToggleHandlers();   // Ensure global expand/collapse buttons work
 }
 
 function addCategoryClickHandlers() {
@@ -70,7 +70,7 @@ function toggleCategory(category) {
         expandedCategories.delete(category);
     } else {
         // Expand the selected category
-        items.forEach(item => item.style.display = 'table-row');  // <--- Ensure display style is set correctly
+        items.forEach(item => item.style.display = 'table-row');
         expandedCategories.add(category);
     }
 }
@@ -87,7 +87,7 @@ function addGlobalToggleHandlers() {
 
 function expandAllCategories() {
     const items = document.querySelectorAll('.category-item');
-    items.forEach(item => item.style.display = 'table-row');  // <--- Ensure all rows are shown
+    items.forEach(item => item.style.display = 'table-row');
     expandedCategories = new Set(Object.keys(data));  // Mark all categories as expanded
 }
 
@@ -161,7 +161,7 @@ function searchTable() {
         });
     });
 
-    addCategoryClickHandlers();
+    addCategoryClickHandlers();  // Ensure search results are interactive
 
     if (expandedCategories.size > 0) {
         expandedCategories.forEach(category => toggleCategory(category));
