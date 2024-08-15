@@ -19,20 +19,8 @@ function normalizeCategory(category) {
 
 function populateCategories() {
     const categories = Object.keys(data);
-    const table = document.getElementById('links-table');
-    table.innerHTML = `
-        <tr>
-            <td colspan="4">
-                <button id="expandAll" class="btn btn-sm btn-primary">+</button>
-                <button id="collapseAll" class="btn btn-sm btn-primary">-</button>
-            </td>
-        </tr>
-        <tr>
-            <th class="sortable" data-column="name">Name</th>
-            <th class="sortable" data-column="description">Description</th>
-            <th class="sortable" data-column="link">Link</th>
-            <th class="sortable" data-column="date">Date</th>
-        </tr>`;  // Add sortable header row
+    const table = document.getElementById('links-table').getElementsByTagName('tbody')[0]; // Reference to tbody only
+    table.innerHTML = '';  // Clear only the tbody
 
     categories.forEach(category => {
         const normalizedCategory = normalizeCategory(category);
@@ -159,7 +147,7 @@ function markAsViewed(item) {
 
 function searchTable() {
     const input = document.getElementById("search").value.toLowerCase();
-    const table = document.getElementById('links-table');
+    const table = document.getElementById('links-table').getElementsByTagName('tbody')[0];
     table.innerHTML = '';
 
     const filteredData = [];
