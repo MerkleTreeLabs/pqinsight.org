@@ -1,5 +1,5 @@
 let data = {};
-let expandedCategories = new Set();  // Set to track multiple expanded categories
+let expandedCategories = new Set();  // Set to track expanded categories
 
 function fetchData() {
     fetch('services.json')
@@ -7,6 +7,7 @@ function fetchData() {
         .then(json => {
             data = json.categories;
             populateCategories();
+            expandAllCategories();  // Automatically expand all categories on load
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
@@ -35,7 +36,7 @@ function populateCategories() {
             }
 
             const row = `
-                <tr class="category-item ${category}" style="display: none;">
+                <tr class="category-item ${category}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
