@@ -1,5 +1,5 @@
 let data = {};
-let expandedCategory = null;
+let expandedCategories = new Set();  // Set to track multiple expanded categories
 
 function fetchData() {
     fetch('services.json')
@@ -14,7 +14,13 @@ function fetchData() {
 function populateCategories() {
     const categories = Object.keys(data);
     const table = document.getElementById('links-table');
-    table.innerHTML = '';
+    table.innerHTML = `
+        <tr>
+            <td colspan="4">
+                <button id="expandAll" class="btn btn-sm btn-primary">+</button>
+                <button id="collapseAll" class="btn btn-sm btn-primary">-</button>
+            </td>
+        </tr>`;  // Add buttons to expand/collapse all
 
     categories.forEach(category => {
         const headerRow = `<tr class="table-secondary category-header" data-category="${category}"><th colspan="4">${category}</th></tr>`;
@@ -29,7 +35,7 @@ function populateCategories() {
             }
 
             const row = `
-                <tr class="category-item ${category}">
+                <tr class="category-item ${category}" style="display: none;">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
@@ -41,8 +47,8 @@ function populateCategories() {
     });
 
     addCategoryClickHandlers();
+    addGlobalToggleHandlers();
 }
-
 
 function addCategoryClickHandlers() {
     const headers = document.querySelectorAll('.category-header');
@@ -57,26 +63,38 @@ function addCategoryClickHandlers() {
 function toggleCategory(category) {
     const items = document.querySelectorAll(`.category-item.${category}`);
     
-    if (expandedCategory === category) {
+    if (expandedCategories.has(category)) {
         // Collapse if the category is already expanded
         items.forEach(item => item.style.display = 'none');
-        expandedCategory = null;
+        expandedCategories.delete(category);
     } else {
-        // Collapse the previously expanded category
-        if (expandedCategory) {
-            const previousItems = document.querySelectorAll(`.category-item.${expandedCategory}`);
-            previousItems.forEach(item => item.style.display = 'none');
-        }
-
         // Expand the selected category
-        items.forEach(item => {
-            item.style.display = 'table-row';
-            markAsViewed(item); // Mark item as viewed
-        });
-        expandedCategory = category;
+        items.forEach(item => item.style.display = 'table-row');
+        expandedCategories.add(category);
     }
 }
 
+function addGlobalToggleHandlers() {
+    document.getElementById('expandAll').addEventListener('click', () => {
+        expandAllCategories();
+    });
+
+    document.getElementById('collapseAll').addEventListener('click', () => {
+        collapseAllCategories();
+    });
+}
+
+function expandAllCategories() {
+    const items = document.querySelectorAll('.category-item');
+    items.forEach(item => item.style.display = 'table-row');
+    expandedCategories = new Set(Object.keys(data));  // Mark all categories as expanded
+}
+
+function collapseAllCategories() {
+    const items = document.querySelectorAll('.category-item');
+    items.forEach(item => item.style.display = 'none');
+    expandedCategories.clear();  // Clear all expanded categories
+}
 
 function markAsViewed(item) {
     const link = item.querySelector('a').href;
@@ -103,12 +121,9 @@ function searchTable() {
     const filteredData = [];
 
     Object.keys(data).forEach(category => {
-        // Check if category matches the search input
         if (category.toLowerCase().includes(input)) {
-            // Add all items in this category if category matches
             filteredData.push({ category: category, items: data[category] });
         } else {
-            // Filter items within the category
             const matchingItems = data[category].filter(item =>
                 item.name.toLowerCase().includes(input) ||
                 item.description.toLowerCase().includes(input) ||
@@ -121,7 +136,6 @@ function searchTable() {
         }
     });
 
-    // Display filtered results
     filteredData.forEach(group => {
         const headerRow = `<tr class="table-secondary category-header" data-category="${group.category}"><th colspan="4">${group.category}</th></tr>`;
         table.innerHTML += headerRow;
@@ -131,7 +145,7 @@ function searchTable() {
             if (item.date && item.date !== "01/01/1970") {
                 dateCell = `<td>${item.date}</td>`;
             } else {
-                dateCell = `<td></td>`;  // Empty cell if no valid date
+                dateCell = `<td></td>`;
             }
 
             const row = `
@@ -148,27 +162,10 @@ function searchTable() {
 
     addCategoryClickHandlers();
 
-    // Collapse all categories by default
-    if (expandedCategory) {
-        toggleCategory(expandedCategory);
+    if (expandedCategories.size > 0) {
+        expandedCategories.forEach(category => toggleCategory(category));
     }
 }
-
-function fetchData() {
-    fetch('services.json')
-        .then(response => {
-            console.log('Fetching JSON data...');
-            return response.json();
-        })
-        .then(json => {
-            console.log('JSON fetched successfully:', json);
-            data = json.categories;
-            populateCategories();
-        })
-        .catch(error => console.error('Error fetching JSON:', error));
-}
-
-
 
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -181,7 +178,6 @@ function getCookie(name) {
         return parts[0] === name ? decodeURIComponent(parts[1]) : r;
     }, '');
 }
-
 
 document.getElementById("search").addEventListener("input", searchTable);
 
@@ -206,6 +202,6 @@ window.onload = function() {
     if (!localStorage.getItem('cookiesAccepted')) {
         document.querySelector('.cookie-consent').classList.add('show');
     } else {
-        highlightViewedLinks(); // Highlight already viewed links
+        highlightViewedLinks();
     }
 };
