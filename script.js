@@ -1,5 +1,6 @@
 let data = {};
 let expandedCategories = new Set();  // Set to track expanded categories
+let sortOrder = { name: true, description: true, link: true, date: true };  // Track sort order
 
 function fetchData() {
     fetch('services.json')
@@ -25,7 +26,13 @@ function populateCategories() {
                 <button id="expandAll" class="btn btn-sm btn-primary">+</button>
                 <button id="collapseAll" class="btn btn-sm btn-primary">-</button>
             </td>
-        </tr>`;  // Add buttons to expand/collapse all
+        </tr>
+        <tr>
+            <th class="sortable" data-column="name">Name</th>
+            <th class="sortable" data-column="description">Description</th>
+            <th class="sortable" data-column="link">Link</th>
+            <th class="sortable" data-column="date">Date</th>
+        </tr>`;  // Add sortable header row
 
     categories.forEach(category => {
         const normalizedCategory = normalizeCategory(category);
@@ -54,6 +61,7 @@ function populateCategories() {
 
     addCategoryClickHandlers();  // Ensure all categories have click handlers
     addGlobalToggleHandlers();   // Ensure global expand/collapse buttons work
+    addSortHandlers();           // Add sorting functionality to headers
 }
 
 function addCategoryClickHandlers() {
@@ -100,6 +108,36 @@ function collapseAllCategories() {
     const items = document.querySelectorAll('.category-item');
     items.forEach(item => item.style.display = 'none');
     expandedCategories.clear();  // Clear all expanded categories
+}
+
+function addSortHandlers() {
+    const headers = document.querySelectorAll('.sortable');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const column = header.getAttribute('data-column');
+            sortOrder[column] = !sortOrder[column];  // Toggle sort order
+            sortCategories(column, sortOrder[column]);
+        });
+    });
+}
+
+function sortCategories(column, ascending) {
+    Object.keys(data).forEach(category => {
+        data[category].sort((a, b) => {
+            let valueA = a[column] ? a[column].toLowerCase() : '';
+            let valueB = b[column] ? b[column].toLowerCase() : '';
+
+            if (column === 'date' && valueA && valueB) {
+                return ascending ? new Date(valueA) - new Date(valueB) : new Date(valueB) - new Date(valueA);
+            }
+
+            if (valueA < valueB) return ascending ? -1 : 1;
+            if (valueA > valueB) return ascending ? 1 : -1;
+            return 0;
+        });
+    });
+
+    populateCategories();  // Re-render table with sorted data
 }
 
 function markAsViewed(item) {
