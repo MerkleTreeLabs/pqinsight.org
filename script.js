@@ -155,30 +155,6 @@ function searchTable() {
 }
 
 
-    // Display filtered results
-    filteredData.forEach(group => {
-        const headerRow = `<tr class="table-secondary category-header" data-category="${group.category}"><th colspan="3">${group.category}</th></tr>`;
-        table.innerHTML += headerRow;
-
-        group.items.forEach(item => {
-            const row = `
-                <tr class="category-item ${group.category}">
-                    <td>${item.name}</td>
-                    <td>${item.description}</td>
-                    <td><a href="${item.link}" target="_blank">${item.link}</a></td>
-                </tr>
-            `;
-            table.innerHTML += row;
-        });
-    });
-
-    addCategoryClickHandlers();
-
-    // Collapse all categories by default
-    if (expandedCategory) {
-        toggleCategory(expandedCategory);
-    }
-}
 
 
 function setCookie(name, value, days) {
