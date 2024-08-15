@@ -16,6 +16,14 @@
                 "date":"01/01/1970"
             }
         ],
+        "Industrial Services": [
+            {
+                "name": "Siemnons - PoQsiKom",
+                "description": "The PoQsiKom project is developing one of the essential foundations for enabling the long-term secure, sovereign and efficient networking of operating technology in Industry 4.0 and thus ensuring a high level of interoperability.",
+                "link": "https://poqsikom.de/",
+                "date":"12/01/2021"
+            }
+        ],
         "Messaging": [
             {
                 "name": "Apple iMessage",
