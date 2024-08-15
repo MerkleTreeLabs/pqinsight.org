@@ -1,4 +1,5 @@
 let data = {};
+let expandedCategory = null;
 
 function fetchData() {
     fetch('services.json')
@@ -16,12 +17,12 @@ function populateCategories() {
     table.innerHTML = '';
 
     categories.forEach(category => {
-        const headerRow = `<tr class="table-secondary"><th colspan="3">${category}</th></tr>`;
+        const headerRow = `<tr class="table-secondary category-header" data-category="${category}"><th colspan="3">${category}</th></tr>`;
         table.innerHTML += headerRow;
 
         data[category].forEach(item => {
             const row = `
-                <tr>
+                <tr class="category-item ${category}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
@@ -30,6 +31,38 @@ function populateCategories() {
             table.innerHTML += row;
         });
     });
+
+    addCategoryClickHandlers();
+}
+
+function addCategoryClickHandlers() {
+    const headers = document.querySelectorAll('.category-header');
+    headers.forEach(header => {
+        header.addEventListener('click', () => {
+            const category = header.getAttribute('data-category');
+            toggleCategory(category);
+        });
+    });
+}
+
+function toggleCategory(category) {
+    const items = document.querySelectorAll(`.category-item.${category}`);
+    
+    if (expandedCategory === category) {
+        // Collapse if the category is already expanded
+        items.forEach(item => item.style.display = 'none');
+        expandedCategory = null;
+    } else {
+        // Collapse the previously expanded category
+        if (expandedCategory) {
+            const previousItems = document.querySelectorAll(`.category-item.${expandedCategory}`);
+            previousItems.forEach(item => item.style.display = 'none');
+        }
+
+        // Expand the selected category
+        items.forEach(item => item.style.display = 'table-row');
+        expandedCategory = category;
+    }
 }
 
 function searchTable() {
@@ -60,12 +93,12 @@ function searchTable() {
 
     // Display filtered results
     filteredData.forEach(group => {
-        const headerRow = `<tr class="table-secondary"><th colspan="3">${group.category}</th></tr>`;
+        const headerRow = `<tr class="table-secondary category-header" data-category="${group.category}"><th colspan="3">${group.category}</th></tr>`;
         table.innerHTML += headerRow;
 
         group.items.forEach(item => {
             const row = `
-                <tr>
+                <tr class="category-item ${group.category}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
@@ -74,6 +107,13 @@ function searchTable() {
             table.innerHTML += row;
         });
     });
+
+    addCategoryClickHandlers();
+
+    // Collapse all categories by default
+    if (expandedCategory) {
+        toggleCategory(expandedCategory);
+    }
 }
 
 document.getElementById("search").addEventListener("input", searchTable);
