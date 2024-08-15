@@ -32,15 +32,15 @@
     </p>
 </div>
 
-    <!-- Search Bar -->
-    <div class="row mt-4">
-        <div class="col-md-6 offset-md-3">
-            <input type="text" id="search" class="form-control" placeholder="Search for links...">
-        </div>
-    </div>
 
     <!-- Links Table -->
 <div class="container mt-4">
+    <!-- Search Bar -->
+    <div class="justify-content-center">
+        <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2">
+            <input type="text" id="search" class="form-control" placeholder="Search for links...">
+        </div>
+    </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="table-responsive">
@@ -99,8 +99,72 @@
 </div>
 
 
-<!-- CTA -->
-  
+<!-- donate -->
+<div class="text-center mt-5">
+    <button class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#donateModal">Donate</button>
+</div>
+
+<!-- Donate Modal -->
+<div class="modal fade" id="donateModal" tabindex="-1" aria-labelledby="donateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="donateModalLabel">Support Our Work</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+          PQInsight.org does not serve ads or accept payment for listings. All costs are covered by us to keep the platform independent and free for everyone. Your donations help us to maintain and grow the site.
+        </p>
+        <h6 class="mt-4">Donation Options:</h6>
+        <div class="d-flex justify-content-around align-items-center mt-3">
+          <!-- BTC Donation -->
+          <div class="text-center">
+            <img src="path_to_btc_icon.png" alt="BTC" style="width:40px; height:40px;">
+            <p>BTC</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" value="your_btc_address" id="btcAddress" readonly>
+              <button class="btn btn-outline-secondary" onclick="copyToClipboard('btcAddress')">Copy</button>
+            </div>
+          </div>
+          <!-- ETH Donation -->
+          <div class="text-center">
+            <img src="path_to_eth_icon.png" alt="ETH" style="width:40px; height:40px;">
+            <p>ETH</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" value="your_eth_address" id="ethAddress" readonly>
+              <button class="btn btn-outline-secondary" onclick="copyToClipboard('ethAddress')">Copy</button>
+            </div>
+          </div>
+          <!-- QRL Donation -->
+          <div class="text-center">
+            <img src="path_to_qrl_icon.png" alt="QRL" style="width:40px; height:40px;">
+            <p>QRL</p>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" value="your_qrl_address" id="qrlAddress" readonly>
+              <button class="btn btn-outline-secondary" onclick="copyToClipboard('qrlAddress')">Copy</button>
+            </div>
+          </div>
+        </div>
+        <!-- Other Donation Options -->
+        <div class="d-flex justify-content-around align-items-center mt-3">
+          <div class="text-center">
+            <img src="path_to_paypal_icon.png" alt="PayPal" style="width:40px; height:40px;">
+            <p><a href="https://paypal.me/yourusername" target="_blank">PayPal.me</a></p>
+          </div>
+          <div class="text-center">
+            <img src="path_to_coffee_icon.png" alt="Buy Me a Coffee" style="width:40px; height:40px;">
+            <p><a href="https://www.buymeacoffee.com/yourusername" target="_blank">Buy Me a Coffee</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -125,6 +189,18 @@
 <script>
     // Set the current year in the footer
     document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
+<script>
+function copyToClipboard(id) {
+    var copyText = document.getElementById(id);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+
+    // Optional: Alert the copied text
+    alert("Copied the address: " + copyText.value);
+}
 </script>
 
 

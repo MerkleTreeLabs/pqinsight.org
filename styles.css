@@ -48,3 +48,16 @@ footer ul li {
 .viewed {
     background-color: #e9ecef; /* Light gray to indicate viewed items */
 }
+
+
+.modal-body .input-group {
+    max-width: 100%;
+}
+
+.modal-body .input-group input {
+    font-size: 0.85rem;
+}
+
+.modal-body .input-group button {
+    font-size: 0.85rem;
+}
