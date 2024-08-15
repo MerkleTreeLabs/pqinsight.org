@@ -1,34 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PQInsight</title>
+    <title>PQInsight - Your Source for Post-Quantum Computing Resources</title>
     
-    <!-- Google tag (gtag.js) -->
+    <meta name="description" content="PQInsight provides the latest developments, research, and tools in post-quantum computing and cybersecurity. Stay ahead with our comprehensive resource library.">
+    <meta name="keywords" content="post-quantum computing, cybersecurity, quantum cryptography, PQC, quantum-safe, encryption, PQInsight, resource library">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="PQInsight - Your Source for Post-Quantum Computing Resources">
+    <meta property="og:description" content="Stay ahead with the latest in post-quantum computing and cybersecurity. Explore our comprehensive resource library.">
+    <meta property="og:image" content="https://pqinsight.org/assets/pqinsight-logo.png">
+    <meta property="og:url" content="https://pqinsight.org">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PQInsight - Your Source for Post-Quantum Computing Resources">
+    <meta name="twitter:description" content="Stay ahead with the latest in post-quantum computing and cybersecurity. Explore our comprehensive resource library.">
+    <meta name="twitter:image" content="https://pqinsight.org/assets/images/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/favicon.png" type="image/x-icon">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://pqinsight.org/">
+    
+    <!-- Structured Data (Schema.org) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "PQInsight",
+      "url": "https://pqinsight.org",
+      "description": "PQInsight provides the latest developments, research, and tools in post-quantum computing and cybersecurity.",
+      "sameAs": [
+        "https://www.linkedin.com/company/pqinsight",
+        "https://twitter.com/pqinsight",
+        "https://www.facebook.com/pqinsight"
+      ]
+    }
+    </script>
+    
+    <!-- Robots Meta Tag -->
+    <meta name="robots" content="index, follow">
+    
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5KWPK144TW"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-5KWPK144TW');
     </script>
     
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
-
-
 </head>
+
+
+
 <body>
 
 <div class="container mt-5">
-    <h1 class="text-center">PQInsight.org - Comprehensive Resource Library</h1>
-    <p class="lead text-center">
+    <div class="row align-items-center">
+        <div class="col-md-2 text-center text-md-start">
+            <img src="./assets/pqinsight-logo.png" alt="PQInsight Logo" class="img-fluid" style="max-height: 100px;">
+        </div>
+        <div class="col-md-10 text-center text-md-start">
+            <h1 class="display-5">PQInsight.org - Comprehensive Resource Library</h1>
+        </div>
+    </div>
+    <p class="lead text-center mt-3">
         Welcome to PQInsight.org, your go-to resource for the latest developments in post-quantum computing and related technologies. Here, you will find a carefully curated list of articles, papers, and tools from trusted sources that will keep you informed and ahead of the curve in this rapidly evolving field.
-    </p>
-    <p class="text-center">
-        Our goal is to provide a clean, organized, and easily navigable experience that allows you to explore these resources at your own pace. Use the table below to find the information you need. You can sort, search, and filter through the categories for quick access to the most relevant content.
     </p>
 </div>
 
@@ -42,7 +89,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="table-responsive">
                 <table id="links-table" class="table table-striped table-bordered">
                     <thead>
@@ -98,10 +145,9 @@
     </p>
 </div>
 
-
-<!-- donate -->
+<!-- Donate Button -->
 <div class="text-center mt-5">
-    <button class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#donateModal">Donate</button>
+    <button class="btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#donateModal">Support Our Work</button>
 </div>
 
 <!-- Donate Modal -->
@@ -120,46 +166,94 @@
         <div class="d-flex justify-content-around align-items-center mt-3">
           <!-- BTC Donation -->
           <div class="text-center">
-            <img src="path_to_btc_icon.png" alt="BTC" style="width:40px; height:40px;">
+            <img src="./assets/icons/bitcoin-brands-solid.svg" alt="BTC" style="width:40px; height:40px;">
             <p>BTC</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" value="your_btc_address" id="btcAddress" readonly>
               <button class="btn btn-outline-secondary" onclick="copyToClipboard('btcAddress')">Copy</button>
             </div>
+            <button class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#btcQRModal">Show QR</button>
           </div>
           <!-- ETH Donation -->
           <div class="text-center">
-            <img src="path_to_eth_icon.png" alt="ETH" style="width:40px; height:40px;">
+            <img src="./assets/icons/ethereum-brands-solid.svg" alt="ETH" style="width:40px; height:40px;">
             <p>ETH</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" value="your_eth_address" id="ethAddress" readonly>
               <button class="btn btn-outline-secondary" onclick="copyToClipboard('ethAddress')">Copy</button>
             </div>
+            <button class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#ethQRModal">Show QR</button>
           </div>
           <!-- QRL Donation -->
           <div class="text-center">
-            <img src="path_to_qrl_icon.png" alt="QRL" style="width:40px; height:40px;">
+            <img src="./assets/icons/dark_512x512.png" alt="QRL" style="width:40px; height:40px;">
             <p>QRL</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" value="your_qrl_address" id="qrlAddress" readonly>
               <button class="btn btn-outline-secondary" onclick="copyToClipboard('qrlAddress')">Copy</button>
             </div>
+            <button class="btn btn-sm btn-link" data-bs-toggle="modal" data-bs-target="#qrlQRModal">Show QR</button>
           </div>
         </div>
         <!-- Other Donation Options -->
         <div class="d-flex justify-content-around align-items-center mt-3">
           <div class="text-center">
-            <img src="path_to_paypal_icon.png" alt="PayPal" style="width:40px; height:40px;">
-            <p><a href="https://paypal.me/yourusername" target="_blank">PayPal.me</a></p>
+            <img src="./assets/icons/cc-paypal-brands-solid.svg" alt="PayPal" style="width:40px; height:40px;">
+            <p><a href="https://paypal.me/fr1t2" target="_blank">PayPal.me</a></p>
           </div>
           <div class="text-center">
-            <img src="path_to_coffee_icon.png" alt="Buy Me a Coffee" style="width:40px; height:40px;">
-            <p><a href="https://www.buymeacoffee.com/yourusername" target="_blank">Buy Me a Coffee</a></p>
+            <img src="./assets/icons/bmc-logo-no-background.png" alt="Buy Me a Coffee" style="width:40px; height:40px;">
+            <p><a href="https://www.buymeacoffee.com/fr1t2" target="_blank">Buy Me a Coffee</a></p>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BTC QR Modal -->
+<div class="modal fade" id="btcQRModal" tabindex="-1" aria-labelledby="btcQRModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="btcQRModalLabel">BTC QR Code</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="./assets/qrcodes/btc_qr.png" alt="BTC QR Code" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ETH QR Modal -->
+<div class="modal fade" id="ethQRModal" tabindex="-1" aria-labelledby="ethQRModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ethQRModalLabel">ETH QR Code</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="./assets/qrcodes/eth_qr.png" alt="ETH QR Code" class="img-fluid">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QRL QR Modal -->
+<div class="modal fade" id="qrlQRModal" tabindex="-1" aria-labelledby="qrlQRModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="qrlQRModalLabel">QRL QR Code</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="./assets/qrcodes/qrl_qr.png" alt="QRL QR Code" class="img-fluid">
       </div>
     </div>
   </div>
