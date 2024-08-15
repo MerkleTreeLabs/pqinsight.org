@@ -17,15 +17,23 @@ function populateCategories() {
     table.innerHTML = '';
 
     categories.forEach(category => {
-        const headerRow = `<tr class="table-secondary category-header" data-category="${category}"><th colspan="3">${category}</th></tr>`;
+        const headerRow = `<tr class="table-secondary category-header" data-category="${category}"><th colspan="4">${category}</th></tr>`;
         table.innerHTML += headerRow;
 
         data[category].forEach(item => {
+            let dateCell = '';
+            if (item.date && item.date !== "01/01/1970") {
+                dateCell = `<td>${item.date}</td>`;
+            } else {
+                dateCell = `<td></td>`;  // Empty cell if no valid date
+            }
+
             const row = `
                 <tr class="category-item ${category}">
                     <td>${item.name}</td>
                     <td>${item.description}</td>
                     <td><a href="${item.link}" target="_blank">${item.link}</a></td>
+                    ${dateCell}
                 </tr>
             `;
             table.innerHTML += row;
@@ -34,6 +42,7 @@ function populateCategories() {
 
     addCategoryClickHandlers();
 }
+
 
 function addCategoryClickHandlers() {
     const headers = document.querySelectorAll('.category-header');
@@ -111,6 +120,40 @@ function searchTable() {
             }
         }
     });
+
+    // Display filtered results
+    filteredData.forEach(group => {
+        const headerRow = `<tr class="table-secondary category-header" data-category="${group.category}"><th colspan="4">${group.category}</th></tr>`;
+        table.innerHTML += headerRow;
+
+        group.items.forEach(item => {
+            let dateCell = '';
+            if (item.date && item.date !== "01/01/1970") {
+                dateCell = `<td>${item.date}</td>`;
+            } else {
+                dateCell = `<td></td>`;  // Empty cell if no valid date
+            }
+
+            const row = `
+                <tr class="category-item ${group.category}">
+                    <td>${item.name}</td>
+                    <td>${item.description}</td>
+                    <td><a href="${item.link}" target="_blank">${item.link}</a></td>
+                    ${dateCell}
+                </tr>
+            `;
+            table.innerHTML += row;
+        });
+    });
+
+    addCategoryClickHandlers();
+
+    // Collapse all categories by default
+    if (expandedCategory) {
+        toggleCategory(expandedCategory);
+    }
+}
+
 
     // Display filtered results
     filteredData.forEach(group => {
