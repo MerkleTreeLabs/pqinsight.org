@@ -112,8 +112,6 @@ body.dark-mode .table {
 body.dark-mode .table th, 
 body.dark-mode .table td {
     border-top: 1px solid var(--dark-background-color-dark);
-    background-color: var(--background-color-dark);
-
 }
 
 .table thead th {
@@ -211,6 +209,40 @@ body.dark-mode .table-secondary.category-header {
     color: var(--dark-text-color); /* Dark mode text color */
     border-top: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
     border-bottom: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
+}
+
+/* Modal Styling */
+.modal-content {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+body.dark-mode .modal-content {
+    background-color: var(--dark-background-color-dark);
+    color: var(--dark-text-color);
+}
+
+.modal-header, .modal-footer {
+    border-color: var(--background-color-dark);
+}
+
+body.dark-mode .modal-header, 
+body.dark-mode .modal-footer {
+    border-color: var(--dark-background-color);
+}
+
+.modal-body .input-group input,
+.modal-body .input-group button {
+    background-color: var(--background-color-dark);
+    color: var(--text-color);
+    border: 1px solid var(--primary-color);
+}
+
+body.dark-mode .modal-body .input-group input,
+body.dark-mode .modal-body .input-group button {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+    border: 1px solid var(--dark-primary-color);
 }
 
 /* Cookie Consent Popup */
