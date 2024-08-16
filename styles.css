@@ -193,6 +193,26 @@ body.dark-mode .table-bordered td {
     border: 1px solid var(--dark-background-color-dark);
 }
 
+/* Category Header Styling */
+.table-secondary.category-header {
+    background-color: var(--primary-color-light); /* Light primary color */
+    color: var(--text-color); /* Ensure text color contrast */
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px; /* Add padding for spacing */
+    border-top: 2px solid var(--primary-color-dark); /* Top border for separation */
+    border-bottom: 2px solid var(--primary-color-dark); /* Bottom border for separation */
+    border-radius: 4px; /* Slight rounding of the corners */
+}
+
+/* Dark mode adjustments for category headers */
+body.dark-mode .table-secondary.category-header {
+    background-color: var(--dark-primary-color); /* Dark mode background */
+    color: var(--dark-text-color); /* Dark mode text color */
+    border-top: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
+    border-bottom: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
+}
+
 /* Cookie Consent Popup */
 .cookie-consent {
     position: fixed;
