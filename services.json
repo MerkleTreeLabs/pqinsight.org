@@ -83,6 +83,12 @@
                 "date": "09/25/2023"
             },
             {
+                "name": "CRYSTALS-Dilithium Python Implementation",
+                "description": "This repository contains a pure python implementation of both: ML-DSA - FIPS 204 Dilithium and CRYSTALS-Dilithium: following (at the time of writing) the most recent specification (v3.1)",
+                "link": "https://github.com/GiacomoPope/dilithium-py",
+                "date": "09/25/2023"
+            },
+            {
                 "name": "Apple iMessage",
                 "description": "iMessage with PQ3: The new state of the art in quantum-secure messaging at scale.",
                 "link": "https://security.apple.com/blog/imessage-pq3/",
@@ -93,6 +99,33 @@
                 "description": "Quantum Resistance and the Signal Protocol.",
                 "link": "https://signal.org/blog/pqxdh/",
                 "date": "2023/09/19"
+            },
+            {
+                "name": "Google Chrome",
+                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM.",
+                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Wolf SSL",
+                "description": "Everything wolfSSL is Preparing for Post-Quantum as of Spring 2024",
+                "link": "https://www.wolfssl.com/everything-wolfssl-is-preparing-for-post-quantum-as-of-spring-2024/",
+                "date": "06/14/2024"
+                
+            },
+            {
+                "name": "Palo Alto",
+                "description": "Palo Alto Networks Quantum Safe VPN Supports New NIST Standards and Enables Crypto-Agility",
+                "link": "https://www.paloaltonetworks.com/blog/2024/08/white-house-post-quantum-announcement/",
+                "date": "08/14/2024"
+                
+            },
+            {
+                "name": "SignServer",
+                "description": "Quantum-ready code signing - As of right now, SignServer supports ML_DSA (Dilithium) and SLH-DSA (SPHINCS+) algorithms for CMS and raw signing.",
+                "link": "https://www.signserver.org/use-cases/quantum-ready-code-signing/",
+                "date": ""
+                
             }
         ],
         "Toolkits and Libraries": [
@@ -113,6 +146,51 @@
                 "description": "Bringing quantum-resistance to AWS services and customers.",
                 "link": "https://aws.amazon.com/security/post-quantum-cryptography/",
                 "date": "01/01/1970"
+            },
+            {
+                "name": "AMD - ML-DSA Crypto Core",
+                "description": "The MLDS-B235 IP Core implements the NIST Module-Lattice-Based Digital Signature Standard (ML-DSA) in FPGA, SoC, and ASIC technologies.",
+                "link": "https://www.xilinx.com/products/intellectual-property/1-1yd4xov.html#overview",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "ML-DSA",
+                "description": "Module-Lattice-based Digital Signature Standard (draft) standard by NIST",
+                "link": "https://github.com/itzmeanjan/ml-dsa",
+                "date": "01/01/1970"                
+            },
+            {
+                "name": "ML-DSA FIA Demo",
+                "description": "This code demonstrates fault injection analysis (FIA) attacks and countermeasures on Module Lattice Digital Signature Algorithm (ML-DSA). ML-DSA is based on Dilithium.",
+                "link": "https://github.com/intel/ml-dsa-fia-demo",
+                "date": "01/01/1970"                
+            },
+            {
+                "name": "RustCrypto: ML-KEM",
+                "description": "Pure Rust implementation of the Module-Lattice-Based Key-Encapsulation Mechanism Standard (formerly known as Kyber) as described in the FIPS 203 Initial Public Draft.",
+                "link": "https://github.com/RustCrypto/KEMs/tree/master/ml-kem",
+                "date": "01/01/1970"                
+            },
+            {
+                "name": "RustCrypto: ML-DSA",
+                "description": "Pure Rust implementation of the Module-Lattice-Based Digital Signature Standard (ML-DSA) as described in the FIPS-204 Initial Public Draft (WIP).",
+                "link": "https://github.com/RustCrypto/signatures/tree/master/ml-dsa",
+                "date": "01/01/1970"                
+
+            },
+            {
+                "name": "RustCrypto: SLH-DSA",
+                "description": "Pure Rust implementation of the SLH-DSA (aka SPHINCS+) signature scheme. Implemented based on the FIPS-205 Inital Public Draft.",
+                "link": "https://github.com/RustCrypto/signatures/tree/master/slh-dsa",
+                "date": "01/01/1970"                
+
+            },
+            {
+                "name": "GO - mlkem768",
+                "description": "Package mlkem768 implements the quantum-resistant key encapsulation method ML-KEM (formerly known as Kyber).",
+                "link": "https://pkg.go.dev/filippo.io/mlkem768#section-readme",
+                "date": "01/01/1970"                
+
             }
         ],
         "Post-Quantum Research and Resources": [
@@ -151,14 +229,6 @@
                 "description": "Recommended Practice for Post-Quantum Cryptography Migration.",
                 "link": "https://standards.ieee.org/ieee/3172/10926/",
                 "date": "05/13/2022"
-            }
-        ],
-        "Quantum-Safe Web Browsing": [
-            {
-                "name": "Google Chrome",
-                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM.",
-                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
-                "date": "01/01/1970"
             }
         ]
     }
