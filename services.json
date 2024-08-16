@@ -1,13 +1,5 @@
 {
     "categories": {
-        "Blockchain": [
-            {
-                "name": "The Quantum Resistant Ledger - QRL",
-                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provides a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
-                "link": "https://theqrl.org/",
-                "date": "06/26/2018"
-            }
-        ],
         "Government Initiatives": [
             {
                 "name": "NIST",
@@ -55,6 +47,14 @@
                 "description": "The New Zealand Information Security Manual (NZISM) is the New Zealand Government's manual on information assurance and information systems security.",
                 "link": "https://nzism.gcsb.govt.nz/",
                 "date": "05/01/2021"
+            }
+        ],        
+        "Blockchain": [
+            {
+                "name": "The Quantum Resistant Ledger - QRL",
+                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provides a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
+                "link": "https://theqrl.org/",
+                "date": "06/26/2018"
             }
         ],
         "Quantum-Resistant Services and Applications": [
