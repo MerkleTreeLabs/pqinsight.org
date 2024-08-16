@@ -397,3 +397,16 @@ body.dark-mode .btn-outline-light .theme-icon {
 body.light-mode .btn-outline-light .theme-icon {
     fill: #333333; /* Dark color for light backgrounds */
 }
+i.fas, i.fab {
+    color: var(--text-color); /* Default to text color */
+}
+
+/* Dark mode icon styling */
+body.dark-mode i.fas, body.dark-mode i.fab {
+    color: var(--dark-text-color); /* Change to dark text color */
+}
+
+/* Adjust sizes if needed */
+i.fas, i.fab {
+    font-size: 40px; /* Set a consistent size */
+}

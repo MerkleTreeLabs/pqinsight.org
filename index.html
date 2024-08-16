@@ -56,6 +56,8 @@
       gtag('config', 'G-5KWPK144TW');
     </script>
     
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
@@ -176,8 +178,7 @@
         <div class="d-flex justify-content-around align-items-center mt-3">
           <!-- BTC Donation -->
           <div class="text-center">
-            <img src="./assets/icons/bitcoin-brands-solid.svg" alt="BTC" style="width:40px; height:40px;">
-            <p>BTC</p>
+            <i class="fab fa-bitcoin" style="font-size: 40px;"></i>            <p>BTC</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" value="bc1q3yzhhws0wpft8qqmlzww0ygq3f8dq03v5j07jj" id="btcAddress" readonly>
               <button class="btn btn-outline-secondary" onclick="copyToClipboard('btcAddress')">Copy</button>
@@ -186,7 +187,7 @@
           </div>
           <!-- ETH Donation -->
           <div class="text-center">
-            <img src="./assets/icons/ethereum-brands-solid.svg" alt="ETH" style="width:40px; height:40px;">
+            <i class="fab fa-ethereum" style="font-size: 40px;"></i>
             <p>ETH</p>
             <div class="input-group mb-3">
               <input type="text" class="form-control" value="0x6451681F97045efB7438712e38C684C431292E93" id="ethAddress" readonly>
@@ -208,11 +209,11 @@
         <!-- Other Donation Options -->
         <div class="d-flex justify-content-around align-items-center mt-3">
           <div class="text-center">
-            <img src="./assets/icons/cc-paypal-brands-solid.svg" alt="PayPal" style="width:40px; height:40px;">
+            <i class="fab fa-paypal" style="font-size: 40px;"></i>
             <p><a href="https://paypal.me/fr1t2" target="_blank">PayPal.me</a></p>
           </div>
           <div class="text-center">
-            <img src="./assets/icons/bmc-logo-no-background.png" alt="Buy Me a Coffee" style="width:40px; height:40px;">
+            <i class="fas fa-coffee" style="font-size: 40px;"></i> <!-- FontAwesome Coffee icon -->
             <p><a href="https://www.buymeacoffee.com/fr1t2" target="_blank">Buy Me a Coffee</a></p>
           </div>
         </div>
