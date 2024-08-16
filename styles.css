@@ -24,6 +24,9 @@
     --dark-text-color: #f8f9fa;
     --dark-background-color: #414141;
     --dark-background-color-dark: #1c1c1c;
+    --text-on-light-bg: #333; /* Dark text for light backgrounds */
+    --text-on-dark-bg: #f8f9fa; /* Light text for dark backgrounds */
+
 }
 
 body {
@@ -46,6 +49,10 @@ a {
 
 body.dark-mode a {
     color: var(--dark-primary-color-light);
+}
+
+.dark-background p {
+    color: var(--text-on-dark-bg); /* Light text for dark backgrounds */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -284,12 +291,9 @@ body.dark-mode .cookie-consent a {
 }
 
 .cookie-consent p {
-    color: #ffc107; /* Bright link color */
+    color: var(--text-on-light-bg); /* Default text color */
 }
 
-body.dark-mode .cookie-consent p {
-    color: var(--dark-secondary-color-light); /* Adjust link color for dark mode */
-}
 
 /* Button styles inside the cookie banner */
 .cookie-consent button {
@@ -331,6 +335,11 @@ body.dark-mode #search::placeholder {
 #search::placeholder {
     color: rgba(51, 51, 51, 0.5); /* Slightly darkened placeholder color */
     opacity: 1; /* Ensures the opacity is consistent across browsers */
+}
+
+
+.banner p {
+    color: var(--text-on-dark-bg);
 }
 
 /* Banner specific styling */
