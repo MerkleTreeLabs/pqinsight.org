@@ -1,19 +1,11 @@
 {
     "categories": {
-        "Web Browsing": [
+        "Blockchain": [
             {
-                "name": "Google Chrome",
-                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM",
-                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
-                "date":"01/01/1970"
-            }
-        ],
-        "Web Services": [
-            {
-                "name": "OpenSSH",
-                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
-                "link": "https://www.openssh.com/txt/release-9.0",
-                "date":"01/01/1970"
+                "name": "The Quantum Resistant Ledger - QRL",
+                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provide a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
+                "link": "https://theqrl.org/",
+                "date":"06/26/2018"
             }
         ],
         "Industrial Services": [
@@ -36,6 +28,20 @@
                 "description": "Quantum Resistance and the Signal Protocol",
                 "link": "https://signal.org/blog/pqxdh/",
                 "date":"2023/09/19"
+            }
+        ],
+        "Net Services": [
+            {
+                "name":"digicert",
+                "description": "Weathering the transition to a quantum safe posture will require organizations to adapt and scale the way they manage digital certificates. At the same time, they will need to migrate their cryptography to approved quantum safe algorithms – potentially multiple times as the standards evolve. It is critical to develop now the ability to continuously discover and manage certificates at-scale.",
+                "link": "https://www.digicert.com/tls-ssl/post-quantum-cryptography",
+                "date":"01/01/1970"
+            },
+            {
+                "name": "OpenSSH",
+                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
+                "link": "https://www.openssh.com/txt/release-9.0",
+                "date":"01/01/1970"
             }
         ],
         "Post Quantum Resources": [
@@ -88,6 +94,14 @@
                 "date":"01/01/1970"
             }
 
+        ],
+        "Web Browsing": [
+            {
+                "name": "Google Chrome",
+                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM",
+                "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
+                "date":"01/01/1970"
+            }
         ]
     }
 }
