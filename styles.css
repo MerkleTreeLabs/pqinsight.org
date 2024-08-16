@@ -291,7 +291,7 @@ body.dark-mode #search::placeholder {
     opacity: 1; /* Ensures the opacity is consistent across browsers */
 }
 
-/* General styling for the banner */
+/* Banner specific styling */
 #pqcBanner {
     background-color: var(--primary-color-light);
     color: var(--text-color);
@@ -299,9 +299,14 @@ body.dark-mode #search::placeholder {
     border-radius: 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     z-index: 1050;
+    position: relative; /* Make sure the position is set relative for the close button */
 }
 
+/* Close button inside the banner */
 #pqcBanner .btn-close {
+    position: absolute; /* Ensure it's only affecting the close button */
+    top: 10px;
+    right: 10px;
     background: none;
     border: none;
     font-size: 1.2rem;
@@ -309,19 +314,22 @@ body.dark-mode #search::placeholder {
     cursor: pointer;
 }
 
-/* Dark mode styling for the banner */
+/* Dark mode specific for the banner */
 body.dark-mode #pqcBanner {
     background-color: var(--dark-primary-color);
     color: var(--dark-text-color);
 }
 
-body.dark-mode #pqcBanner .alert-link {
-    color: var(--dark-secondary-color-light);
-}
-
+/* Dark mode specific for the close button */
 body.dark-mode #pqcBanner .btn-close {
     color: var(--dark-text-color);
 }
+
+/* Ensure close button icon color matches in dark mode */
+body.dark-mode #pqcBanner .btn-close i {
+    color: var(--dark-text-color);
+}
+
 
 /* Ensure banner closes when 'x' is clicked */
 .position-absolute {
