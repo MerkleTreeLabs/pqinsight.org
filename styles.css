@@ -22,7 +22,7 @@
     --dark-secondary-color-dark: #b38a00;
 
     --dark-text-color: #f8f9fa;
-    --dark-background-color: #121212;
+    --dark-background-color: #414141;
     --dark-background-color-dark: #1c1c1c;
 }
 
@@ -112,6 +112,8 @@ body.dark-mode .table {
 body.dark-mode .table th, 
 body.dark-mode .table td {
     border-top: 1px solid var(--dark-background-color-dark);
+    background-color: var(--background-color-dark);
+
 }
 
 .table thead th {
