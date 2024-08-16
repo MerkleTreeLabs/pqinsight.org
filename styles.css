@@ -1,63 +1,333 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+:root {
+    /* Light Mode Colors */
+    --primary-color: #66a5e8;
+    --primary-color-light: #c1dbf5;
+    --primary-color-dark: #004bb5;
+
+    --secondary-color: #ffc107;
+    --secondary-color-light: #ffd633;
+    --secondary-color-dark: #e0a800;
+
+    --text-color: #333;
+    --background-color: #f8f9fa;
+    --background-color-dark: #e9ecef;
+
+    /* Dark Mode Colors */
+    --dark-primary-color: #004bb5;
+    --dark-primary-color-light: #3388ff;
+    --dark-primary-color-dark: #002f8c;
+
+    --dark-secondary-color: #ffd633;
+    --dark-secondary-color-light: #ffe066;
+    --dark-secondary-color-dark: #b38a00;
+
+    --dark-text-color: #f8f9fa;
+    --dark-background-color: #121212;
+    --dark-background-color-dark: #1c1c1c;
 }
 
-.table th {
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    background-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+}
+
+a {
+    color: var(--primary-color);
+}
+
+body.dark-mode a {
+    color: var(--dark-primary-color-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
+body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
+    color: var(--dark-text-color);
+}
+
+p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+body.dark-mode p {
+    color: var(--dark-text-color);
+}
+
+.btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    border: none;
+    color: #fff;
+}
+
+body.dark-mode .btn-primary {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .btn-primary:hover {
+    background-color: var(--dark-primary-color-dark);
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px; /* Slightly curved corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    overflow: hidden; /* Ensure rounded corners apply correctly */
+}
+
+body.dark-mode .table {
+    color: var(--dark-text-color);
+    background-color: var(--dark-background-color-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.table th, .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid var(--background-color-dark);
+}
+
+body.dark-mode .table th, 
+body.dark-mode .table td {
+    border-top: 1px solid var(--dark-background-color-dark);
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid var(--primary-color);
+    background-color: var(--background-color-dark);
+    color: var(--text-color);
     cursor: pointer;
 }
 
+body.dark-mode .table thead th {
+    border-bottom: 2px solid var(--dark-primary-color);
+    background-color: var(--dark-background-color-dark);
+    color: var(--dark-text-color);
+}
+
+.table thead th:hover {
+    background-color: var(--primary-color-light);
+}
+
+body.dark-mode .table thead th:hover {
+    background-color: var(--dark-primary-color-light);
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease-in-out;
+}
+
+.table tbody tr:hover {
+    background-color: var(--primary-color-light);
+}
+
+body.dark-mode .table tbody tr:hover {
+    background-color: var(--dark-primary-color-light);
+}
+
+.table tbody tr.viewed {
+    background-color: var(--background-color-dark);
+}
+
+body.dark-mode .table tbody tr.viewed {
+    background-color: var(--dark-background-color-dark);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--background-color-dark);
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--dark-background-color-dark);
+}
+
+.table-hover tbody tr:hover {
+    color: var(--text-color);
+    background-color: var(--primary-color-light);
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+    color: var(--dark-text-color);
+    background-color: var(--dark-primary-color-light);
+}
+
+.table-bordered {
+    border: 1px solid transparent;
+}
+
+body.dark-mode .table-bordered {
+    border: 1px solid var(--dark-background-color-dark);
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid var(--background-color-dark);
+}
+
+body.dark-mode .table-bordered th, 
+body.dark-mode .table-bordered td {
+    border: 1px solid var(--dark-background-color-dark);
+}
+
+/* Cookie Consent Popup */
 .cookie-consent {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    display: none;
+    background-color: var(--primary-color-dark);
+    color: #fff;
+    z-index: 1000;
+    display: none; /* Hidden by default */
 }
 
 .cookie-consent.show {
-    display: block;
+    display: block; /* Display when needed */
 }
 
-footer {
-    background-color: #343a40;
-    color: #ffffff;
-    padding: 20px 0;
+/* General styling for the search input */
+#search {
+    background-color: var(--background-color-dark);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
 }
 
-footer a {
-    color: #ffffff;
-    text-decoration: none;
+/* Dark mode adjustments for search input */
+body.dark-mode #search {
+    background-color: var(--dark-background-color-dark);
+    border: 1px solid var(--dark-primary-color);
+    color: var(--dark-text-color);
 }
 
-footer a:hover {
-    text-decoration: underline;
+/* Dark mode styling for placeholder text */
+body.dark-mode #search::placeholder {
+    color: rgba(248, 249, 250, 0.7); /* Lighten the placeholder color for better readability */
+    opacity: 1; /* Ensures the opacity is consistent across browsers */
 }
 
-footer ul {
+/* Ensure the placeholder text is readable in light mode as well */
+#search::placeholder {
+    color: rgba(51, 51, 51, 0.5); /* Slightly darkened placeholder color */
+    opacity: 1; /* Ensures the opacity is consistent across browsers */
+}
+
+/* General styling for the banner */
+#pqcBanner {
+    background-color: var(--primary-color-light);
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1050;
+}
+
+#pqcBanner .btn-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+/* Dark mode styling for the banner */
+body.dark-mode #pqcBanner {
+    background-color: var(--dark-primary-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode #pqcBanner .alert-link {
+    color: var(--dark-secondary-color-light);
+}
+
+body.dark-mode #pqcBanner .btn-close {
+    color: var(--dark-text-color);
+}
+
+/* Ensure banner closes when 'x' is clicked */
+.position-absolute {
+    position: absolute;
+}
+
+.top-0 {
+    top: 0;
+}
+
+.end-0 {
+    right: 0;
+}
+
+.m-3 {
+    margin: 1rem;
+}
+
+/* Theme Toggle Button Styles */
+#themeToggle {
+    border: none;
+    background: none;
     padding: 0;
-    margin: 10px 0 0;
-    list-style: none;
 }
 
-footer ul li {
-    display: inline;
-    margin: 0 10px;
+#themeToggle img {
+    width: 24px;
+    height: 24px;
 }
 
-.viewed {
-    background-color: #e9ecef; /* Light gray to indicate viewed items */
+#themeToggle:hover {
+    opacity: 0.8; /* Slight opacity change on hover for feedback */
 }
 
-
-.modal-body .input-group {
-    max-width: 100%;
+/* General styling for the SVG icon */
+.theme-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor; /* Inherit the text color */
 }
 
-.modal-body .input-group input {
-    font-size: 0.85rem;
+/* Ensure the icon is white on a dark background */
+body.dark-mode .theme-icon {
+    color: #ffffff; /* Apply white color in dark mode */
+    fill: currentColor;
 }
 
-.modal-body .input-group button {
-    font-size: 0.85rem;
+/* Ensure the icon is dark on a light background */
+body:not(.dark-mode) .theme-icon {
+    color: #ffffff; /* Apply dark color in light mode */
+    fill: currentColor;
+}
+
+/* Ensure the icon is always visible, regardless of the background */
+.btn-outline-light .theme-icon {
+    fill: #ffffff; /* Light color for dark backgrounds */
+}
+
+/* Dark mode specific styles */
+body.dark-mode .btn-outline-light .theme-icon {
+    fill: #ffffff; /* Keep icon white in dark mode */
+}
+
+/* Light mode specific styles (if needed) */
+body.light-mode .btn-outline-light .theme-icon {
+    fill: #333333; /* Dark color for light backgrounds */
 }

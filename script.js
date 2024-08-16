@@ -14,7 +14,6 @@ function fetchData() {
         .catch(error => console.error('Error fetching JSON:', error));
 }
 
-
 function normalizeCategory(category) {
     return category.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens and convert to lowercase
 }
@@ -202,6 +201,7 @@ function searchTable() {
     }
 }
 
+// Cookie handling functions
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
     document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
@@ -231,8 +231,41 @@ function highlightViewedLinks() {
     });
 }
 
+
+function closeBanner() {
+    document.getElementById('pqcBanner').style.display = 'none';
+}
+
+
+// Theme management functions
+function setTheme(theme) {
+    document.body.classList.toggle('dark-mode', theme === 'dark');
+}
+
+function getThemeFromCookie() {
+    const theme = getCookie('theme');
+    return theme ? theme : null;
+}
+
+function setThemeInCookie(theme) {
+    setCookie('theme', theme, 365); // Store theme preference in cookie for 1 year
+}
+
+function toggleTheme() {
+    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+    setThemeInCookie(newTheme);
+}
+
+// Apply theme on page load
 window.onload = function() {
     fetchData();
+
+    const savedTheme = getThemeFromCookie();
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
 
     if (!localStorage.getItem('cookiesAccepted')) {
         document.querySelector('.cookie-consent').classList.add('show');
@@ -240,3 +273,6 @@ window.onload = function() {
         highlightViewedLinks();
     }
 };
+
+// Theme toggle button event listener
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
