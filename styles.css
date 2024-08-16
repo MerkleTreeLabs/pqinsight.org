@@ -255,14 +255,48 @@ body.dark-mode .modal-body .input-group button {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--primary-color-dark);
-    color: #fff;
+    background-color: var(--primary-color-dark); /* Background color */
+    color: #fff; /* Ensure text is white */
     z-index: 1000;
     display: none; /* Hidden by default */
 }
 
+
+/* Show the cookie banner */
 .cookie-consent.show {
     display: block; /* Display when needed */
+}
+
+/* Dark mode adjustments for the cookie banner */
+body.dark-mode .cookie-consent {
+    background-color: var(--dark-primary-color-dark); /* Dark mode background */
+    color: #f8f9fa; /* Light text color */
+}
+
+/* Link color adjustment inside the cookie banner */
+.cookie-consent a {
+    color: #ffc107; /* Bright link color */
+    text-decoration: underline;
+}
+
+body.dark-mode .cookie-consent a {
+    color: var(--dark-secondary-color-light); /* Adjust link color for dark mode */
+}
+
+/* Button styles inside the cookie banner */
+.cookie-consent button {
+    color: #fff; /* White text for buttons */
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: var(--secondary-color); /* Button background */
+    border-radius: 5px; /* Rounded corners */
+}
+
+body.dark-mode .cookie-consent button {
+    background-color: var(--dark-secondary-color-dark); /* Dark mode button background */
+    color: #fff; /* White text */
 }
 
 /* General styling for the search input */
