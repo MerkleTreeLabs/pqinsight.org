@@ -111,7 +111,7 @@ body.dark-mode .table {
 
 body.dark-mode .table th, 
 body.dark-mode .table td {
-    border-top: 1px solid var(--dark-background-color-dark);
+    border-top: 1px solid var(--dark-background-color);
 }
 
 .table thead th {
@@ -145,7 +145,7 @@ body.dark-mode .table thead th:hover {
 }
 
 body.dark-mode .table tbody tr:hover {
-    background-color: var(--dark-primary-color-light);
+    background-color: var(--dark-primary-color-light); /* Ensure it stands out */
 }
 
 .table tbody tr.viewed {
@@ -153,7 +153,7 @@ body.dark-mode .table tbody tr:hover {
 }
 
 body.dark-mode .table tbody tr.viewed {
-    background-color: var(--dark-background-color-dark);
+    background-color: var(--dark-background-color); /* Improve contrast for viewed rows */
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -161,7 +161,11 @@ body.dark-mode .table tbody tr.viewed {
 }
 
 body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
-    background-color: var(--dark-background-color-dark);
+    background-color: #333; /* A mid-tone background that contrasts better */
+}
+
+body.dark-mode .table-striped tbody tr:nth-of-type(even) {
+    background-color: var(--dark-background-color-dark); /* Ensure consistency */
 }
 
 .table-hover tbody tr:hover {
@@ -179,7 +183,7 @@ body.dark-mode .table-hover tbody tr:hover {
 }
 
 body.dark-mode .table-bordered {
-    border: 1px solid var(--dark-background-color-dark);
+    border: 1px solid #777; /* Adjust the main table border */
 }
 
 .table-bordered th, .table-bordered td {
@@ -188,7 +192,7 @@ body.dark-mode .table-bordered {
 
 body.dark-mode .table-bordered th, 
 body.dark-mode .table-bordered td {
-    border: 1px solid var(--dark-background-color-dark);
+    border: 1px solid #555; /* Adjust to a lighter border color for better visibility */
 }
 
 /* Category Header Styling */
@@ -205,10 +209,10 @@ body.dark-mode .table-bordered td {
 
 /* Dark mode adjustments for category headers */
 body.dark-mode .table-secondary.category-header {
-    background-color: var(--dark-primary-color); /* Dark mode background */
-    color: var(--dark-text-color); /* Dark mode text color */
-    border-top: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
-    border-bottom: 2px solid var(--dark-primary-color-dark); /* Dark mode border */
+    background-color: var(--dark-primary-color); 
+    color: var(--dark-text-color); 
+    border-top: 2px solid #004bb5; /* Ensure the borders are distinct */
+    border-bottom: 2px solid #004bb5;
 }
 
 /* Modal Styling */
