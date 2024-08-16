@@ -1,13 +1,11 @@
 :root {
-    /* Light Mode Colors */
+    /* Common Colors */
     --primary-color: #66a5e8;
     --primary-color-light: #c1dbf5;
     --primary-color-dark: #004bb5;
-
     --secondary-color: #ffc107;
     --secondary-color-light: #ffd633;
     --secondary-color-dark: #e0a800;
-
     --text-color: #333;
     --background-color: #f8f9fa;
     --background-color-dark: #e9ecef;
@@ -16,17 +14,16 @@
     --dark-primary-color: #004bb5;
     --dark-primary-color-light: #3388ff;
     --dark-primary-color-dark: #002f8c;
-
     --dark-secondary-color: #ffd633;
     --dark-secondary-color-light: #ffe066;
     --dark-secondary-color-dark: #b38a00;
-
     --dark-text-color: #f8f9fa;
     --dark-background-color: #414141;
     --dark-background-color-dark: #1c1c1c;
-    --text-on-light-bg: #333; /* Dark text for light backgrounds */
-    --text-on-dark-bg: #f8f9fa; /* Light text for dark backgrounds */
 
+    /* Text on Backgrounds */
+    --text-on-light-bg: var(--text-color);
+    --text-on-dark-bg: var(--dark-text-color);
 }
 
 body {
@@ -35,9 +32,11 @@ body {
     color: var(--text-color);
     font-size: 1rem;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark Mode Overrides */
 body.dark-mode {
     background-color: var(--dark-background-color);
     color: var(--dark-text-color);
@@ -45,34 +44,24 @@ body.dark-mode {
 
 a {
     color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-color-dark);
 }
 
 body.dark-mode a {
     color: var(--dark-primary-color-light);
 }
 
-.dark-background p {
-    color: var(--text-on-dark-bg); /* Light text for dark backgrounds */
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     margin-bottom: 1.5rem;
-    color: var(--text-color);
-}
-
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, 
-body.dark-mode h4, body.dark-mode h5, body.dark-mode h6 {
-    color: var(--dark-text-color);
 }
 
 p {
     margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-body.dark-mode p {
-    color: var(--dark-text-color);
 }
 
 .btn-primary {
@@ -81,11 +70,15 @@ body.dark-mode p {
     background-color: var(--primary-color);
     border: none;
     color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color-dark);
 }
 
 body.dark-mode .btn-primary {
     background-color: var(--dark-primary-color);
-    color: var(--dark-text-color);
 }
 
 body.dark-mode .btn-primary:hover {
@@ -95,19 +88,19 @@ body.dark-mode .btn-primary:hover {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: var(--text-color);
     background-color: var(--background-color);
+    color: var(--text-color);
     border-collapse: separate;
     border-spacing: 0;
-    border-radius: 8px; /* Slightly curved corners */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    overflow: hidden; /* Ensure rounded corners apply correctly */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
 body.dark-mode .table {
-    color: var(--dark-text-color);
     background-color: var(--dark-background-color-dark);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    color: var(--dark-text-color);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
 }
 
 .table th, .table td {
@@ -116,9 +109,8 @@ body.dark-mode .table {
     border-top: 1px solid var(--background-color-dark);
 }
 
-body.dark-mode .table th, 
-body.dark-mode .table td {
-    border-top: 1px solid var(--dark-background-color);
+body.dark-mode .table th, body.dark-mode .table td {
+    border-top: 1px solid #444;
 }
 
 .table thead th {
@@ -152,15 +144,7 @@ body.dark-mode .table thead th:hover {
 }
 
 body.dark-mode .table tbody tr:hover {
-    background-color: var(--dark-primary-color-light); /* Ensure it stands out */
-}
-
-.table tbody tr.viewed {
-    background-color: var(--background-color-dark);
-}
-
-body.dark-mode .table tbody tr.viewed {
-    background-color: var(--dark-background-color); /* Improve contrast for viewed rows */
+    background-color: var(--dark-primary-color-light);
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -168,238 +152,148 @@ body.dark-mode .table tbody tr.viewed {
 }
 
 body.dark-mode .table-striped tbody tr:nth-of-type(odd) {
-    background-color: #333; /* A mid-tone background that contrasts better */
+    background-color: #3a3a3a;
+    color: var(--dark-text-color);
 }
 
 body.dark-mode .table-striped tbody tr:nth-of-type(even) {
-    background-color: var(--dark-background-color-dark); /* Ensure consistency */
+    background-color: var(--dark-background-color-dark);
+    color: var(--dark-text-color);
 }
 
 .table-hover tbody tr:hover {
     color: var(--text-color);
-    background-color: var(--primary-color-light);
 }
 
 body.dark-mode .table-hover tbody tr:hover {
     color: var(--dark-text-color);
-    background-color: var(--dark-primary-color-light);
 }
 
 .table-bordered {
-    border: 1px solid transparent;
-}
-
-body.dark-mode .table-bordered {
-    border: 1px solid #777; /* Adjust the main table border */
-}
-
-.table-bordered th, .table-bordered td {
     border: 1px solid var(--background-color-dark);
 }
 
-body.dark-mode .table-bordered th, 
-body.dark-mode .table-bordered td {
-    border: 1px solid #555; /* Adjust to a lighter border color for better visibility */
+body.dark-mode .table-bordered {
+    border: 1px solid #777;
 }
 
-/* Category Header Styling */
 .table-secondary.category-header {
-    background-color: var(--primary-color-light); /* Light primary color */
-    color: var(--text-color); /* Ensure text color contrast */
+    background-color: var(--primary-color-light);
     font-weight: bold;
     text-transform: uppercase;
-    padding: 10px; /* Add padding for spacing */
-    border-top: 2px solid var(--primary-color-dark); /* Top border for separation */
-    border-bottom: 2px solid var(--primary-color-dark); /* Bottom border for separation */
-    border-radius: 4px; /* Slight rounding of the corners */
+    padding: 10px;
+    border-top: 2px solid var(--primary-color-dark);
+    border-bottom: 2px solid var(--primary-color-dark);
 }
 
-/* Dark mode adjustments for category headers */
 body.dark-mode .table-secondary.category-header {
-    background-color: var(--dark-primary-color); 
-    color: var(--dark-text-color); 
-    border-top: 2px solid #004bb5; /* Ensure the borders are distinct */
-    border-bottom: 2px solid #004bb5;
+    background-color: var(--dark-primary-color);
 }
 
-/* Modal Styling */
 .modal-content {
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 body.dark-mode .modal-content {
     background-color: var(--dark-background-color-dark);
     color: var(--dark-text-color);
+
 }
 
 .modal-header, .modal-footer {
     border-color: var(--background-color-dark);
 }
 
-body.dark-mode .modal-header, 
-body.dark-mode .modal-footer {
+body.dark-mode .modal-header, body.dark-mode .modal-footer {
     border-color: var(--dark-background-color);
+    color: var(--dark-text-color);
+
 }
 
-.modal-body .input-group input,
-.modal-body .input-group button {
+.modal-body .input-group input, .modal-body .input-group button {
     background-color: var(--background-color-dark);
     color: var(--text-color);
     border: 1px solid var(--primary-color);
 }
 
-body.dark-mode .modal-body .input-group input,
-body.dark-mode .modal-body .input-group button {
+body.dark-mode .modal-body .input-group input, body.dark-mode .modal-body .input-group button {
     background-color: var(--dark-background-color);
-    color: var(--dark-text-color);
     border: 1px solid var(--dark-primary-color);
+    color: var(--dark-text-color);
+
 }
 
-/* Cookie Consent Popup */
 .cookie-consent {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: var(--primary-color-dark); /* Background color */
-    color: #fff; /* Ensure text is white */
+    background-color: var(--primary-color-dark);
+    color: var(--dark-text-color);
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-
-/* Show the cookie banner */
 .cookie-consent.show {
-    display: block; /* Display when needed */
+    display: block;
 }
 
-/* Dark mode adjustments for the cookie banner */
 body.dark-mode .cookie-consent {
-    background-color: var(--dark-primary-color-dark); /* Dark mode background */
-    color: #f8f9fa; /* Light text color */
+    background-color: var(--dark-primary-color-dark);
+    color: var(--dark-text-color);
+
 }
 
-/* Link color adjustment inside the cookie banner */
 .cookie-consent a {
-    color: #ffc107; /* Bright link color */
+    color: var(--secondary-color);
     text-decoration: underline;
 }
 
 body.dark-mode .cookie-consent a {
-    color: var(--dark-secondary-color-light); /* Adjust link color for dark mode */
+    color: var(--dark-secondary-color-light);
+    color: var(--dark-text-color);
+
 }
 
-.cookie-consent p {
-    color: var(--text-on-light-bg); /* Default text color */
-}
-
-
-/* Button styles inside the cookie banner */
 .cookie-consent button {
-    color: #fff; /* White text for buttons */
+    color: #fff;
     border: none;
     padding: 5px 10px;
     margin-left: 10px;
     cursor: pointer;
-    background-color: var(--secondary-color); /* Button background */
-    border-radius: 5px; /* Rounded corners */
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
 body.dark-mode .cookie-consent button {
-    background-color: var(--dark-secondary-color-dark); /* Dark mode button background */
-    color: #fff; /* White text */
+    background-color: var(--dark-secondary-color-dark);
 }
 
-/* General styling for the search input */
 #search {
     background-color: var(--background-color-dark);
     border: 1px solid var(--primary-color);
     color: var(--text-color);
 }
 
-/* Dark mode adjustments for search input */
 body.dark-mode #search {
     background-color: var(--dark-background-color-dark);
     border: 1px solid var(--dark-primary-color);
     color: var(--dark-text-color);
 }
 
-/* Dark mode styling for placeholder text */
-body.dark-mode #search::placeholder {
-    color: rgba(248, 249, 250, 0.7); /* Lighten the placeholder color for better readability */
-    opacity: 1; /* Ensures the opacity is consistent across browsers */
-}
-
-/* Ensure the placeholder text is readable in light mode as well */
 #search::placeholder {
-    color: rgba(51, 51, 51, 0.5); /* Slightly darkened placeholder color */
-    opacity: 1; /* Ensures the opacity is consistent across browsers */
+    color: rgba(51, 51, 51, 0.5);
+    opacity: 1;
 }
 
-
-.banner p {
-    color: var(--text-on-dark-bg);
+body.dark-mode #search::placeholder {
+    color: rgba(248, 249, 250, 0.7);
 }
 
-/* Banner specific styling */
-#pqcBanner {
-    background-color: var(--primary-color-light);
-    color: var(--text-color);
-    padding: 15px;
-    border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1050;
-    position: relative; /* Make sure the position is set relative for the close button */
-}
-
-/* Close button inside the banner */
-#pqcBanner .btn-close {
-    position: absolute; /* Ensure it's only affecting the close button */
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-/* Dark mode specific for the banner */
-body.dark-mode #pqcBanner {
-    background-color: var(--dark-primary-color);
-    color: var(--dark-text-color);
-}
-
-/* Dark mode specific for the close button */
-body.dark-mode #pqcBanner .btn-close {
-    color: var(--dark-text-color);
-}
-
-/* Ensure close button icon color matches in dark mode */
-body.dark-mode #pqcBanner .btn-close i {
-    color: var(--dark-text-color);
-}
-
-
-/* Ensure banner closes when 'x' is clicked */
-.position-absolute {
-    position: absolute;
-}
-
-.top-0 {
-    top: 0;
-}
-
-.end-0 {
-    right: 0;
-}
-
-.m-3 {
-    margin: 1rem;
-}
-
-/* Theme Toggle Button Styles */
 #themeToggle {
     border: none;
     background: none;
@@ -412,52 +306,34 @@ body.dark-mode #pqcBanner .btn-close i {
 }
 
 #themeToggle:hover {
-    opacity: 0.8; /* Slight opacity change on hover for feedback */
+    opacity: 0.8;
 }
 
-/* General styling for the SVG icon */
 .theme-icon {
     width: 24px;
     height: 24px;
-    fill: currentColor; /* Inherit the text color */
+    fill: currentColor;
 }
 
-/* Ensure the icon is white on a dark background */
 body.dark-mode .theme-icon {
-    color: #ffffff; /* Apply white color in dark mode */
+    color: #ffffff;
     fill: currentColor;
 }
 
-/* Ensure the icon is dark on a light background */
-body:not(.dark-mode) .theme-icon {
-    color: #ffffff; /* Apply dark color in light mode */
-    fill: currentColor;
-}
-
-/* Ensure the icon is always visible, regardless of the background */
-.btn-outline-light .theme-icon {
-    fill: #ffffff; /* Light color for dark backgrounds */
-}
-
-/* Dark mode specific styles */
-body.dark-mode .btn-outline-light .theme-icon {
-    fill: #ffffff; /* Keep icon white in dark mode */
-}
-
-/* Light mode specific styles (if needed) */
-body.light-mode .btn-outline-light .theme-icon {
-    fill: #333333; /* Dark color for light backgrounds */
-}
 i.fas, i.fab {
-    color: var(--text-color); /* Default to text color */
+    color: var(--text-color);
+    font-size: 40px;
 }
 
-/* Dark mode icon styling */
 body.dark-mode i.fas, body.dark-mode i.fab {
-    color: var(--dark-text-color); /* Change to dark text color */
+    color: var(--dark-text-color);
 }
 
-/* Adjust sizes if needed */
-i.fas, i.fab {
-    font-size: 40px; /* Set a consistent size */
+
+.qrl{
+filter: invert(18%) sepia(3%) saturate(6%) hue-rotate(325deg) brightness(99%) contrast(92%);
+}
+
+body.dark-mode .qrl{
+    filter: invert(99%) sepia(94%) saturate(746%) hue-rotate(180deg) brightness(107%) contrast(95%);
 }
