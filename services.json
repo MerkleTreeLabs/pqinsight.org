@@ -3,104 +3,162 @@
         "Blockchain": [
             {
                 "name": "The Quantum Resistant Ledger - QRL",
-                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provide a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
+                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provides a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
                 "link": "https://theqrl.org/",
-                "date":"06/26/2018"
+                "date": "06/26/2018"
             }
         ],
-        "Industrial Services": [
+        "Government Initiatives": [
             {
-                "name": "Siemnons - PoQsiKom",
-                "description": "The PoQsiKom project is developing one of the essential foundations for enabling the long-term secure, sovereign and efficient networking of operating technology in Industry 4.0 and thus ensuring a high level of interoperability.",
-                "link": "https://poqsikom.de/",
-                "date":"12/01/2021"
-            }
-        ],
-        "Messaging": [
-            {
-                "name": "Apple iMessage",
-                "description": "iMessage with PQ3: The new state of the art in quantum-secure messaging at scale",
-                "link": "https://security.apple.com/blog/imessage-pq3/",
-                "date":"01/01/1970"
+                "name": "NIST",
+                "description": "Leading the standardization of quantum-resistant encryption algorithms, which will become essential for future cryptographic systems. Services aligned with these standards will be critical for organizations seeking quantum resistance.",
+                "link": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards",
+                "date": ""
+            },{
+                "name": "NSA",
+                "description": "Post-Quantum Cybersecurity Resources.",
+                "link": "https://www.nsa.gov/Cybersecurity/Post-Quantum-Cybersecurity-Resources/",
+                "date": "01/01/1970"
             },
             {
-                "name": "Signal",
-                "description": "Quantum Resistance and the Signal Protocol",
-                "link": "https://signal.org/blog/pqxdh/",
-                "date":"2023/09/19"
+                "name": "Cybersecurity Infrastructure Security Agency CISA",
+                "description": "Post-Quantum Cryptography Initiative.",
+                "link": "https://www.cisa.gov/quantum",
+                "date": "06/06/2022"
+            },
+            {
+                "name": "Department Of Homeland Security DHS",
+                "description": "The Department of Homeland Security (DHS), in partnership with the Department of Commerce’s National Institute of Standards and Technology (NIST), has released a roadmap to help organizations protect their data and systems and to reduce risks related to the advancement of quantum computing technology.",
+                "link": "https://www.dhs.gov/quantum",
+                "date": "10/04/2022"
+            },
+            {
+                "name": "European Commission",
+                "description": "Recommendation on a Coordinated Implementation Roadmap for the transition to Post-Quantum Cryptography.",
+                "link": "https://digital-strategy.ec.europa.eu/en/library/recommendation-coordinated-implementation-roadmap-transition-post-quantum-cryptography",
+                "date": "10/04/2022"
+            },
+            {
+                "name": "Australian Strategic Policy Institute - ASPI",
+                "description": "An Australian strategy for the quantum revolution.",
+                "link": "https://www.aspi.org.au/report/australian-strategy-quantum-revolution",
+                "date": "05/01/2021"
+            },
+            {
+                "name": "KpqC Competition Round 2",
+                "description": "South Korea open national post-quantum cryptography standards competition.",
+                "link": "https://www.kpqc.or.kr/competition_02.html",
+                "date": "05/01/2021"
+            },
+            {
+                "name": "New Zealand Information Security Manual",
+                "description": "The New Zealand Information Security Manual (NZISM) is the New Zealand Government's manual on information assurance and information systems security.",
+                "link": "https://nzism.gcsb.govt.nz/",
+                "date": "05/01/2021"
             }
         ],
-        "Net Services": [
+        "Quantum-Resistant Services and Applications": [
             {
-                "name":"digicert",
-                "description": "Weathering the transition to a quantum safe posture will require organizations to adapt and scale the way they manage digital certificates. At the same time, they will need to migrate their cryptography to approved quantum safe algorithms – potentially multiple times as the standards evolve. It is critical to develop now the ability to continuously discover and manage certificates at-scale.",
+                "name": "DigiCert",
+                "description": "Weathering the transition to a quantum-safe posture will require organizations to adapt and scale the way they manage digital certificates. At the same time, they will need to migrate their cryptography to approved quantum-safe algorithms – potentially multiple times as the standards evolve. It is critical to develop now the ability to continuously discover and manage certificates at scale.",
                 "link": "https://www.digicert.com/tls-ssl/post-quantum-cryptography",
-                "date":"01/01/1970"
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Siemens - PoQsiKom",
+                "description": "The PoQsiKom project is developing one of the essential foundations for enabling the long-term secure, sovereign, and efficient networking of operating technology in Industry 4.0 and thus ensuring a high level of interoperability.",
+                "link": "https://poqsikom.de/",
+                "date": "12/01/2021"
             },
             {
                 "name": "OpenSSH",
-                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default",
+                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default.",
                 "link": "https://www.openssh.com/txt/release-9.0",
-                "date":"01/01/1970"
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Post-Quantum WireGuard",
+                "description": "In this paper, we present PQ-WireGuard, a post-quantum variant of the handshake in the WireGuard VPN protocol.",
+                "link": "https://eprint.iacr.org/2020/379",
+                "date": "09/25/2023"
+            },
+            {
+                "name": "Apple iMessage",
+                "description": "iMessage with PQ3: The new state of the art in quantum-secure messaging at scale.",
+                "link": "https://security.apple.com/blog/imessage-pq3/",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Signal",
+                "description": "Quantum Resistance and the Signal Protocol.",
+                "link": "https://signal.org/blog/pqxdh/",
+                "date": "2023/09/19"
             }
         ],
-        "Post Quantum Resources": [
+        "Toolkits and Libraries": [
             {
-                "name": "IBM Quantum-safe software solutions",
-                "description":"IBM Quantum Safe™ technology is a comprehensive set of tools, capabilities, and approaches for securing your enterprise for the quantum future.",
-                "link":"https://www.ibm.com/quantum/quantum-safe",
-                "date":"01/01/1970"
-            },
-            {
-                "name": "Open Quantum Safe ",
-                "description":"software for the transition to quantum-resistant cryptography.",
-                "link":"https://openquantumsafe.org/",
-                "date":"01/01/1970"
-            },
-            {
-                "name": "Post-Quantum Cryptography Alliance",
-                "description":"Drive the advancement and adoption of post-quantum cryptography.",
-                "link":"https://pqca.org/",
-                "date":"01/01/1970"
-            },
-            {
-                "name": "Post-Quantum",
-                "description":"Helping organisations become quantum-safe across their entire digital footprint.",
-                "link":"https://post-quantum.com/",
-                "date":"01/01/1970"
-            },
-            {
-                "name": "NSA",
-                "description":"Post-Quantum Cybersecurity Resources",
-                "link":"https://www.nsa.gov/Cybersecurity/Post-Quantum-Cybersecurity-Resources/",
-                "date":"01/01/1970"
+                "name": "Open Quantum Safe",
+                "description": "Software for the transition to quantum-resistant cryptography.",
+                "link": "https://openquantumsafe.org/",
+                "date": "01/01/1970"
             },
             {
                 "name": "Entrust",
-                "description":"Post-Quantum Cryptography",
-                "link":"https://www.entrust.com/solutions/post-quantum-cryptography/",
-                "date":"01/01/1970"
+                "description": "Post-Quantum Cryptography.",
+                "link": "https://www.entrust.com/solutions/post-quantum-cryptography/",
+                "date": "01/01/1970"
             },
             {
                 "name": "AWS Post-Quantum Cryptography",
-                "description":"Bringing quantum-resistance to AWS services and customers",
-                "link":"https://aws.amazon.com/security/post-quantum-cryptography/",
-                "date":"01/01/1970"
+                "description": "Bringing quantum-resistance to AWS services and customers.",
+                "link": "https://aws.amazon.com/security/post-quantum-cryptography/",
+                "date": "01/01/1970"
+            }
+        ],
+        "Post-Quantum Research and Resources": [
+            {
+                "name": "IBM Quantum-safe software solutions",
+                "description": "IBM Quantum Safe™ technology is a comprehensive set of tools, capabilities, and approaches for securing your enterprise for the quantum future.",
+                "link": "https://www.ibm.com/quantum/quantum-safe",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Post-Quantum Cryptography Alliance",
+                "description": "Drive the advancement and adoption of post-quantum cryptography.",
+                "link": "https://pqca.org/",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "Post-Quantum",
+                "description": "Helping organizations become quantum-safe across their entire digital footprint.",
+                "link": "https://post-quantum.com/",
+                "date": "01/01/1970"
             },
             {
                 "name": "Post-Quantum Cryptography Coalition (PQCC)",
-                "description":"Accelerating Adoption of Quantum-Secure Cryptography in the Real World",
-                "link":"https://pqcc.org/",
-                "date":"01/01/1970"
+                "description": "Accelerating adoption of quantum-secure cryptography in the real world.",
+                "link": "https://pqcc.org/",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "The International Association for Cryptologic Research (IACR)",
+                "description": "The International Association for Cryptologic Research (IACR) is a non-profit scientific organization whose purpose is to further research in cryptology and related fields. Cryptology is the science and practice of designing computation and communication systems which are secure in the presence of adversaries.",
+                "link": "https://iacr.org/",
+                "date": "01/01/1970"
+            },
+            {
+                "name": "IEEE Standards Association (IEEE SA)",
+                "description": "Recommended Practice for Post-Quantum Cryptography Migration.",
+                "link": "https://standards.ieee.org/ieee/3172/10926/",
+                "date": "05/13/2022"
             }
-
         ],
-        "Web Browsing": [
+        "Quantum-Safe Web Browsing": [
             {
                 "name": "Google Chrome",
-                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM",
+                "description": "Protecting Chrome Traffic with Hybrid Kyber KEM.",
                 "link": "https://blog.chromium.org/2023/08/protecting-chrome-traffic-with-hybrid.html",
-                "date":"01/01/1970"
+                "date": "01/01/1970"
             }
         ]
     }
