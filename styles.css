@@ -283,6 +283,14 @@ body.dark-mode .cookie-consent a {
     color: var(--dark-secondary-color-light); /* Adjust link color for dark mode */
 }
 
+.cookie-consent p {
+    color: #ffc107; /* Bright link color */
+}
+
+body.dark-mode .cookie-consent p {
+    color: var(--dark-secondary-color-light); /* Adjust link color for dark mode */
+}
+
 /* Button styles inside the cookie banner */
 .cookie-consent button {
     color: #fff; /* White text for buttons */
