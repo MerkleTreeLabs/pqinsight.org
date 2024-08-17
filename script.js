@@ -5,7 +5,9 @@ let sortOrder = { name: true, description: true, link: true, date: true };
 
 // Initialize the site when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Apply the saved theme immediately
     applySavedTheme();
+    
     fetchData();
     setupEventListeners();
     if (!localStorage.getItem('cookiesAccepted')) {
@@ -165,6 +167,7 @@ function searchTable() {
     addCategoryClickHandlers(); // Reapply click handlers after search
 }
 
+
 // Cookie handling functions
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -180,7 +183,8 @@ function getCookie(name) {
 
 // Handle theme toggling and saving preference
 function toggleTheme() {
-    const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     setCookie('theme', newTheme, 365);
 }
@@ -194,7 +198,7 @@ function setTheme(theme) {
 function applySavedTheme() {
     const savedTheme = getCookie('theme');
     if (savedTheme) {
-        setTheme(savedTheme);
+        setTheme(savedTheme);  // Apply the theme before interacting with the rest of the DOM
     }
 }
 
