@@ -217,3 +217,7 @@ function acceptCookies() {
     document.querySelector('.cookie-consent').style.display = 'none';
     localStorage.setItem('cookiesAccepted', 'true');
 }
+function rejectCookies() {
+    document.querySelector('.cookie-consent').classList.remove('show');
+    localStorage.setItem('cookiesAccepted', 'false');
+}

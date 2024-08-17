@@ -226,15 +226,17 @@ body.dark-mode .modal-body .input-group input, body.dark-mode .modal-body .input
 }
 
 .cookie-consent {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--primary-color-dark);
-    color: var(--dark-text-color);
-    z-index: 1000;
-    display: none;
-    transition: background-color 0.3s, color 0.3s;
+    position: fixed; /* Fixes the banner to the bottom of the viewport */
+    bottom: 0;       /* Aligns it at the bottom */
+    left: 0;         /* Stretches from the left */
+    width: 100%;     /* Takes the full width of the viewport */
+    background-color: var(--primary-color-dark); /* Background color */
+    color: #fff;     /* Text color */
+    z-index: 1000;   /* High z-index to ensure it appears on top of other elements */
+    display: none;   /* Hidden by default */
+    padding: 1rem;   /* Adds some padding */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow for depth */
+    text-align: center; /* Centers the text and content */
 }
 
 .cookie-consent.show {
