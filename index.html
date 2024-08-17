@@ -11,7 +11,7 @@
     
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="PQInsight - Your Source for Post-Quantum Computing Resources">
-    <meta property="og:description" content="Stay ahead with the latest in post-quantum computing and cybersecurity. Explore our comprehensive resource library.">
+    <meta name="description" content="Stay ahead with the latest developments in post-quantum computing. PQInsight provides research, tools, and resources to keep you informed and secure.">
     <meta property="og:image" content="https://pqinsight.org/assets/pqinsight-logo.png">
     <meta property="og:url" content="https://pqinsight.org">
     <meta property="og:type" content="website">
@@ -60,7 +60,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link rel="preload" href="styles.css" as="style">
 </head>
 
 
@@ -330,7 +330,7 @@ function copyToClipboard(id) {
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="script.js"></script>
+<script defer src="script.js"></script>
 
 
 </body>

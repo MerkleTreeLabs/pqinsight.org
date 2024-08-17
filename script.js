@@ -1,61 +1,80 @@
+// Global Variables
 let data = {};
-let expandedCategories = new Set();  // Set to track expanded categories
-let sortOrder = { name: true, description: true, link: true, date: true };  // Track sort order
+let expandedCategories = new Set();
+let sortOrder = { name: true, description: true, link: true, date: true };
 
+// Initialize the site when the DOM is fully loaded
+document.addEventListener("DOMContentLoaded", () => {
+    applySavedTheme();
+    fetchData();
+    setupEventListeners();
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.querySelector('.cookie-consent').classList.add('show');
+    } else {
+        highlightViewedLinks();
+    }
+});
+
+// Fetch JSON data and initialize table
 function fetchData() {
     fetch('services.json')
         .then(response => response.json())
         .then(json => {
             data = json.categories;
-            sortCategories('name', true); // Automatically sort by name (ascending)
+            sortCategories('name', true);
             populateCategories();
-            expandAllCategories();  // Automatically expand all categories on load
+            expandAllCategories();
         })
         .catch(error => console.error('Error fetching JSON:', error));
 }
 
-function normalizeCategory(category) {
-    return category.replace(/\s+/g, '-').toLowerCase();  // Replace spaces with hyphens and convert to lowercase
-}
-
+// Populate the table with categories and items
 function populateCategories() {
-    const categories = Object.keys(data);
-    const table = document.getElementById('links-table').getElementsByTagName('tbody')[0]; // Reference to tbody only
-    table.innerHTML = '';  // Clear only the tbody
+    const tableBody = document.querySelector('#links-table tbody');
+    tableBody.innerHTML = '';  // Clear table body
 
-    categories.forEach(category => {
+    Object.entries(data).forEach(([category, items]) => {
         const normalizedCategory = normalizeCategory(category);
-        const headerRow = `<tr class="table-secondary category-header" data-category="${normalizedCategory}"><th colspan="4">${category}</th></tr>`;
-        table.innerHTML += headerRow;
+        tableBody.innerHTML += createCategoryHeaderRow(category, normalizedCategory);
 
-        data[category].forEach(item => {
-            let dateCell = '';
-            if (item.date && item.date !== "01/01/1970") {
-                dateCell = `<td>${item.date}</td>`;
-            } else {
-                dateCell = `<td></td>`;  // Empty cell if no valid date
-            }
-
-            const row = `
-                <tr class="category-item ${normalizedCategory}">
-                    <td>${item.name}</td>
-                    <td>${item.description}</td>
-                    <td><a href="${item.link}" target="_blank">${item.link}</a></td>
-                    ${dateCell}
-                </tr>
-            `;
-            table.innerHTML += row;
+        items.forEach(item => {
+            tableBody.innerHTML += createItemRow(item, normalizedCategory);
         });
     });
 
-    addCategoryClickHandlers();  // Ensure all categories have click handlers
-    addGlobalToggleHandlers();   // Ensure global expand/collapse buttons work
-    addSortHandlers();           // Add sorting functionality to headers
+    // Reapply event listeners after updating the table
+    addCategoryClickHandlers();
+    highlightViewedLinks();
 }
 
+// Create category header row HTML
+function createCategoryHeaderRow(category, normalizedCategory) {
+    return `
+        <tr class="table-secondary category-header" data-category="${normalizedCategory}">
+            <th colspan="4">${category}</th>
+        </tr>`;
+}
+
+// Create item row HTML
+function createItemRow(item, normalizedCategory) {
+    const dateCell = item.date && item.date !== "01/01/1970" ? `<td>${item.date}</td>` : '<td></td>';
+    return `
+        <tr class="category-item ${normalizedCategory}">
+            <td>${item.name}</td>
+            <td>${item.description}</td>
+            <td><a href="${item.link}" target="_blank">${item.link}</a></td>
+            ${dateCell}
+        </tr>`;
+}
+
+// Normalize category names
+function normalizeCategory(category) {
+    return category.replace(/\s+/g, '-').toLowerCase();
+}
+
+// Add event listeners for category headers
 function addCategoryClickHandlers() {
-    const headers = document.querySelectorAll('.category-header');
-    headers.forEach(header => {
+    document.querySelectorAll('.category-header').forEach(header => {
         header.addEventListener('click', () => {
             const category = header.getAttribute('data-category');
             toggleCategory(category);
@@ -63,148 +82,93 @@ function addCategoryClickHandlers() {
     });
 }
 
+// Toggle visibility of category items
 function toggleCategory(category) {
     const items = document.querySelectorAll(`.category-item.${category}`);
-    
-    if (expandedCategories.has(category)) {
-        // Collapse if the category is already expanded
-        items.forEach(item => item.style.display = 'none');
-        expandedCategories.delete(category);
-    } else {
-        // Expand the selected category
-        items.forEach(item => item.style.display = 'table-row');
-        expandedCategories.add(category);
-    }
+    const isExpanded = expandedCategories.has(category);
+    items.forEach(item => item.style.display = isExpanded ? 'none' : 'table-row');
+    isExpanded ? expandedCategories.delete(category) : expandedCategories.add(category);
 }
 
-function addGlobalToggleHandlers() {
-    document.getElementById('expandAll').addEventListener('click', () => {
-        expandAllCategories();
-    });
-
-    document.getElementById('collapseAll').addEventListener('click', () => {
-        collapseAllCategories();
-    });
+// Set up global event listeners
+function setupEventListeners() {
+    document.getElementById('expandAll').addEventListener('click', expandAllCategories);
+    document.getElementById('collapseAll').addEventListener('click', collapseAllCategories);
+    document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+    document.getElementById("search").addEventListener("input", searchTable);
 }
 
+// Expand all categories
 function expandAllCategories() {
-    const items = document.querySelectorAll('.category-item');
-    items.forEach(item => item.style.display = 'table-row');
-    expandedCategories = new Set(Object.keys(data).map(normalizeCategory));  // Mark all categories as expanded
+    expandedCategories = new Set(Object.keys(data).map(normalizeCategory));
+    document.querySelectorAll('.category-item').forEach(item => item.style.display = 'table-row');
 }
 
+// Collapse all categories
 function collapseAllCategories() {
-    const items = document.querySelectorAll('.category-item');
-    items.forEach(item => item.style.display = 'none');
-    expandedCategories.clear();  // Clear all expanded categories
+    expandedCategories.clear();
+    document.querySelectorAll('.category-item').forEach(item => item.style.display = 'none');
 }
 
-function addSortHandlers() {
-    const headers = document.querySelectorAll('.sortable');
-    headers.forEach(header => {
-        header.addEventListener('click', () => {
-            const column = header.getAttribute('data-column');
-            sortOrder[column] = !sortOrder[column];  // Toggle sort order
-            sortCategories(column, sortOrder[column]);
-        });
-    });
-}
-
+// Sort categories by a specific column
 function sortCategories(column, ascending) {
     Object.keys(data).forEach(category => {
-        data[category].sort((a, b) => {
-            let valueA = a[column] ? a[column].toLowerCase() : '';
-            let valueB = b[column] ? b[column].toLowerCase() : '';
-
-            if (column === 'date' && valueA && valueB) {
-                return ascending ? new Date(valueA) - new Date(valueB) : new Date(valueB) - new Date(valueA);
-            }
-
-            if (valueA < valueB) return ascending ? -1 : 1;
-            if (valueA > valueB) return ascending ? 1 : -1;
-            return 0;
-        });
+        data[category].sort((a, b) => compareItems(a, b, column, ascending));
     });
-
-    populateCategories();  // Re-render table with sorted data
+    populateCategories();
 }
 
-function markAsViewed(item) {
-    const link = item.querySelector('a').href;
-    let viewedLinks = getCookie('viewedLinks');
+// Compare function for sorting
+function compareItems(a, b, column, ascending) {
+    const valueA = a[column] ? a[column].toLowerCase() : '';
+    const valueB = b[column] ? b[column].toLowerCase() : '';
 
-    if (!viewedLinks) {
-        viewedLinks = [];
-    } else {
-        viewedLinks = JSON.parse(viewedLinks);
+    if (column === 'date' && valueA && valueB) {
+        return ascending ? new Date(valueA) - new Date(valueB) : new Date(valueB) - new Date(valueA);
     }
 
-    if (!viewedLinks.includes(link)) {
-        viewedLinks.push(link);
-        setCookie('viewedLinks', JSON.stringify(viewedLinks), 365);
-        item.classList.add('viewed');
-    }
+    return ascending ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
 }
 
+// Highlight viewed links based on stored data
+function highlightViewedLinks() {
+    const viewedLinks = JSON.parse(getCookie('viewedLinks') || '[]');
+    document.querySelectorAll('.category-item a').forEach(link => {
+        if (viewedLinks.includes(link.href)) {
+            link.closest('tr').classList.add('viewed');
+        }
+    });
+}
+
+// Search the table based on user input
 function searchTable() {
     const input = document.getElementById("search").value.toLowerCase();
-    const table = document.getElementById('links-table').getElementsByTagName('tbody')[0];
-    table.innerHTML = '';
+    const tableBody = document.querySelector('#links-table tbody');
+    tableBody.innerHTML = ''; // Clear existing table content
 
-    const filteredData = [];
+    Object.entries(data).forEach(([category, items]) => {
+        const matchingItems = items.filter(item => 
+            item.name.toLowerCase().includes(input) || 
+            item.description.toLowerCase().includes(input) ||
+            item.link.toLowerCase().includes(input)
+        );
 
-    Object.keys(data).forEach(category => {
-        if (category.toLowerCase().includes(input)) {
-            filteredData.push({ category: category, items: data[category] });
-        } else {
-            const matchingItems = data[category].filter(item =>
-                item.name.toLowerCase().includes(input) ||
-                item.description.toLowerCase().includes(input) ||
-                item.link.toLowerCase().includes(input)
-            );
-
-            if (matchingItems.length > 0) {
-                filteredData.push({ category: category, items: matchingItems });
-            }
+        if (matchingItems.length > 0) {
+            const normalizedCategory = normalizeCategory(category);
+            tableBody.innerHTML += createCategoryHeaderRow(category, normalizedCategory);
+            matchingItems.forEach(item => {
+                tableBody.innerHTML += createItemRow(item, normalizedCategory);
+            });
         }
     });
 
-    filteredData.forEach(group => {
-        const normalizedCategory = normalizeCategory(group.category);
-        const headerRow = `<tr class="table-secondary category-header" data-category="${normalizedCategory}"><th colspan="4">${group.category}</th></tr>`;
-        table.innerHTML += headerRow;
-
-        group.items.forEach(item => {
-            let dateCell = '';
-            if (item.date && item.date !== "01/01/1970") {
-                dateCell = `<td>${item.date}</td>`;
-            } else {
-                dateCell = `<td></td>`;
-            }
-
-            const row = `
-                <tr class="category-item ${normalizedCategory}">
-                    <td>${item.name}</td>
-                    <td>${item.description}</td>
-                    <td><a href="${item.link}" target="_blank">${item.link}</a></td>
-                    ${dateCell}
-                </tr>
-            `;
-            table.innerHTML += row;
-        });
-    });
-
-    addCategoryClickHandlers();  // Ensure search results are interactive
-
-    if (expandedCategories.size > 0) {
-        expandedCategories.forEach(category => toggleCategory(category));
-    }
+    addCategoryClickHandlers(); // Reapply click handlers after search
 }
 
 // Cookie handling functions
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+    document.cookie = `${name}=${encodeURIComponent(value)}; expires=${expires}; path=/`;
 }
 
 function getCookie(name) {
@@ -214,65 +178,42 @@ function getCookie(name) {
     }, '');
 }
 
-document.getElementById("search").addEventListener("input", searchTable);
-
-function acceptCookies() {
-    document.querySelector('.cookie-consent').style.display = 'none';
-    localStorage.setItem('cookiesAccepted', 'true');
+// Handle theme toggling and saving preference
+function toggleTheme() {
+    const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+    setTheme(newTheme);
+    setCookie('theme', newTheme, 365);
 }
 
-function highlightViewedLinks() {
-    const viewedLinks = JSON.parse(getCookie('viewedLinks') || '[]');
-
-    document.querySelectorAll('.category-item a').forEach(link => {
-        if (viewedLinks.includes(link.href)) {
-            link.closest('tr').classList.add('viewed');
-        }
-    });
-}
-
-
-function closeBanner() {
-    document.getElementById('pqcBanner').style.display = 'none';
-}
-
-
-// Theme management functions
+// Set the theme based on user preference
 function setTheme(theme) {
     document.body.classList.toggle('dark-mode', theme === 'dark');
 }
 
-function getThemeFromCookie() {
-    const theme = getCookie('theme');
-    return theme ? theme : null;
-}
-
-function setThemeInCookie(theme) {
-    setCookie('theme', theme, 365); // Store theme preference in cookie for 1 year
-}
-
-function toggleTheme() {
-    const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-    setThemeInCookie(newTheme);
-}
-
-// Apply theme on page load
-window.onload = function() {
-    fetchData();
-
-    const savedTheme = getThemeFromCookie();
+// Apply saved theme on page load
+function applySavedTheme() {
+    const savedTheme = getCookie('theme');
     if (savedTheme) {
         setTheme(savedTheme);
     }
+}
 
-    if (!localStorage.getItem('cookiesAccepted')) {
-        document.querySelector('.cookie-consent').classList.add('show');
-    } else {
-        highlightViewedLinks();
-    }
-};
+// Utility to copy text to clipboard
+function copyToClipboard(id) {
+    const copyText = document.getElementById(id);
+    copyText.select();
+    copyText.setSelectionRange(0, 99999); // For mobile devices
+    document.execCommand("copy");
+    alert(`Copied the address: ${copyText.value}`);
+}
 
-// Theme toggle button event listener
-document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+// Close banner function
+function closeBanner() {
+    document.getElementById('pqcBanner').style.display = 'none';
+}
+
+// Accept cookies function
+function acceptCookies() {
+    document.querySelector('.cookie-consent').style.display = 'none';
+    localStorage.setItem('cookiesAccepted', 'true');
+}
