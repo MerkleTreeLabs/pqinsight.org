@@ -64,7 +64,7 @@
             },
             {
                 "name": "BTC - BIP: QuBit - P2QRH spending rules",
-                "description": "his proposal aims to improve the quantum resistance of Bitcoin's signature security should the Discrete Logarithm Problem which secures Elliptic Curve Cryptography (EC DLP) no longer prove to be computationally hard, likely through quantum advantage by cryptographically-relevant quantum computers (CRQCs).",
+                "description": "This proposal aims to improve the quantum resistance of Bitcoin's signature security should the Discrete Logarithm Problem which secures Elliptic Curve Cryptography (EC DLP) no longer prove to be computationally hard, likely through quantum advantage by cryptographically-relevant quantum computers (CRQCs).",
                 "link": "https://github.com/cryptoquick/bips/blob/p2qrh/bip-p2qrh.mediawiki",
                 "date": "08/14/2024"                
             }
