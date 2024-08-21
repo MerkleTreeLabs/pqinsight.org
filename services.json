@@ -52,9 +52,21 @@
         "Blockchain": [
             {
                 "name": "The Quantum Resistant Ledger - QRL",
-                "description": "The QRL digital asset is secure against current and emerging cryptographic threats. Our suite of solutions provides a range of options for the safe custody of QRL digital assets and interaction with public and private post-quantum secure blockchains built on our core protocol.",
-                "link": "https://theqrl.org/",
+                "description": "Private digital monies must be secure against computing advances to achieve longevity. The design and issuance of a cryptocurrency ledger utilising hash-based digital signatures which are resistant to classical and quantum computing attack is presented.",
+                "link": "https://github.com/theQRL/Whitepaper/blob/master/QRL_whitepaper.pdf",
                 "date": "06/26/2018"
+            },
+            {
+                "name": "ETH - Ethereum Research",
+                "description": "How to hard-fork to save most users’ funds in a quantum emergency",
+                "link": "https://ethresear.ch/t/how-to-hard-fork-to-save-most-users-funds-in-a-quantum-emergency/18901",
+                "date": "03/09/2024"
+            },
+            {
+                "name": "BTC - BIP: QuBit - P2QRH spending rules",
+                "description": "his proposal aims to improve the quantum resistance of Bitcoin's signature security should the Discrete Logarithm Problem which secures Elliptic Curve Cryptography (EC DLP) no longer prove to be computationally hard, likely through quantum advantage by cryptographically-relevant quantum computers (CRQCs).",
+                "link": "https://github.com/cryptoquick/bips/blob/p2qrh/bip-p2qrh.mediawiki",
+                "date": "08/14/2024"                
             }
         ],
         "Quantum-Resistant Services and Applications": [
