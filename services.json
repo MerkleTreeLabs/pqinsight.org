@@ -203,6 +203,19 @@
                 "link": "https://pkg.go.dev/filippo.io/mlkem768#section-readme",
                 "date": "01/01/1970"                
 
+            },
+            {
+                "name": "OpenJDK",
+                "description": "As defined in Java Enhancement Proposals JEP497 for ML-DSA (ML-DSA-44, ML-DSA-65, and ML-DSA-87 standardized in FIPS 204) and JEP496 for ML-KEM () in the OpenJDK JCE provider since Java 24.",
+                "link": "https://openjdk.org/jeps/496" ,
+                "date": "03/18/2025"                
+
+            },
+            {
+                "name": "Bouncy Castle – Open-source cryptographic APIs",
+                "description": "Bouncy Castle for Java and C# .Net providing  crypto linrary supporting a wide range of standard and draft quantum-resitant algorithms and formats.",
+                "link": "https://www.bouncycastle.org/documentation/specification_interoperability/#algorithms-and-key-types" ,
+                "date": "01/01/1970"                
             }
         ],
         "Post-Quantum Research and Resources": [
@@ -241,6 +254,12 @@
                 "description": "Recommended Practice for Post-Quantum Cryptography Migration.",
                 "link": "https://standards.ieee.org/ieee/3172/10926/",
                 "date": "05/13/2022"
+            },
+            {
+                "name": "Post-Quantum Almanach (Bouncy Castle)",
+                "description": "Algorithm comparision, state of standadisation and implementation examples (PDF).",
+                "link": "https://downloads.bouncycastle.org/java/docs/PQC-Almanac.pdf",
+                "date": "11/18/2024"
             }
         ]
     }
