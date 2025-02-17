@@ -4,7 +4,7 @@ A collection of services and resources implementing post quantum cryptography.
 
 > This site is provided as a free resource without bias. The minimum requirements are simple, the project must have implemented post quantum secure cryptography and provide sources proving the claim.
 
-## Make This list great!
+## Contributions Welcome 
 
 If you have suggestions for services that meet these requirements, please submit a PR to this Repo with sources and we will add it!
 
