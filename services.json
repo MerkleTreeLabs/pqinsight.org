@@ -84,7 +84,7 @@
             },
             {
                 "name": "OpenSSH",
-                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default.",
+                "description": "OpenSSH 9.0 using the hybrid Streamlined NTRU Prime + x25519 key exchange method by default. Version 9.9 adds mlkem768x25519-sha256 by default.",
                 "link": "https://www.openssh.com/txt/release-9.0",
                 "date": "01/01/1970"
             },
